@@ -28,7 +28,16 @@ class ProfileViewController : UIViewController {
     }
     
     @IBAction func onClickChatAction(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
         
+    }
+    
+    //  MARK: OnClick Logout Action
+    
+    @IBAction func onClickLogoutAction(_ sender: Any) {
+        let rootVC = AppStoryboard.Main.instance.instantiateViewController(withIdentifier: IntroViewController.className) as! IntroViewController
+        rootVC.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(rootVC, animated: true)
     }
     
 }

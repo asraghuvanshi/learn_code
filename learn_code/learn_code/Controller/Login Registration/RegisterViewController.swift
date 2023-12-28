@@ -51,23 +51,9 @@ class RegisterViewController : UIViewController {
     @IBAction func onClickSignupAction(_ sender: Any) {
         guard let userName = nameTextField.text ,let email = emailTextField.text , let password =  passwordTextField.text, let mobile = phoneTextField.text else { return }
         
-        FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password, completion: { authUser, error  in
-            guard let error = error else { return }
-            
-            let user = ChatUser(name: userName, email: email, phone: mobile)
-            DatabaseManager.databaseManager.addUser(with: user, completion: { success in
-                if success {
-                    guard let image = UIImage(named: "image1"), let data = image.pngData()
-                    else { return }
-                    
-                    let filename = user.profileUrl
-                    StorageManger.shared.uploadProfile(with: data, filename: filename, completion: { result in
-                        print(result)
-                    })
-                }
-            })
-            
-        })
+        DatabaseManager.addUser(userName: userName, userEmail: email, mobileNo: mobile, password: password)
+        
+        SharedInstance.shared.moveToDashboard()
     }
     
     //  MARK:  OnClick Gender Clicked Action

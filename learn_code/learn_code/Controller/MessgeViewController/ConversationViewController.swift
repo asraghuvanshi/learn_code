@@ -18,6 +18,12 @@ class ConversationViewController : UIViewController {
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var conversationTableView: UITableView!
     
+    @IBOutlet weak var senderOuterView: UIView!
+    @IBOutlet weak var senderInnerView: UIView!
+    @IBOutlet weak var messageSendBttn: UIButton!
+    
+    
+    
     //  MARK:  Private and Public Variables
     
    
@@ -25,7 +31,6 @@ class ConversationViewController : UIViewController {
     //  MARK:  UIView Lifecycle Delegate Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.isNavigationBarHidden = true
         configureChatUI()
     }
     
@@ -45,8 +50,11 @@ class ConversationViewController : UIViewController {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             self.imgBack.image = UIImage(named: ImageCollection.backImage)
-        
-            self.lblTitle.configureLabel(text: "Chats", color: .blackColor, fontStyle: .semibold, fontSize: FontSize.navigationTitle18.generateFontSize())
+            self.messageSendBttn.setImage(UIImage(named: ImageCollection.chatIcon), for: .normal)
+            self.lblTitle.configureLabel(text: UINavigationTile.chats, color: .blackColor, fontStyle: .semibold, fontSize: FontSize.navigationTitle18.generateFontSize())
+            
+            self.senderOuterView.setBorder(radius: self.senderOuterView.frame.size.height / 2, color: .appColor, width: 0.8)
+            
         }
         self.navigationController?.isNavigationBarHidden = true
         

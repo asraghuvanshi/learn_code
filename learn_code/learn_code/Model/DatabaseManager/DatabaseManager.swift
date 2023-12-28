@@ -6,31 +6,50 @@
 //
 
 import Foundation
+import FirebaseCore
+import FirebaseAuth
 import FirebaseDatabase
+
 
 class DatabaseManager {
     
     static let databaseManager = DatabaseManager()
     
-    private let database = Database.database().reference()
+    static let reference = Database.database().reference(fromURL: "https://learncodeproject-58c90-default-rtdb.firebaseio.com/")
     
-    
-    public func addUser(with user: ChatUser, completion: @escaping (Bool) -> Void) {
-        database.child(user.safeEmail).setValue([
-            "name" : user.name,
-            "phone": user.phone,
-            "profileUrl" : user.profileUrl
-        ], withCompletionBlock: { error, _ in
-            guard error == nil else {
-                print("failed to write to the database")
-                completion(false)
+    ///   Create new User Method
+    static func addUser(userName:String ,userEmail: String, mobileNo: String, password: String) {
+        FirebaseAuth.Auth.auth().createUser(withEmail: userEmail, password: password, completion: { authUser, error in
+            if error != nil {
+                print(error)
                 return
             }
             
-            completion(true)
+            guard let authResult = authUser?.user.uid else { return }
+            
+            let userReference = reference.child("users").child(authResult)
+            let values = ["fullName": userName, "userEmail": userEmail, "userMobile": mobileNo]
+            userReference.updateChildValues(values, withCompletionBlock: { error, ref in
+                if error != nil {
+                    print(ref)
+                    return
+                }
+                print(ref)
+            })
+            
+        })
+    }
+    
+    
+    ///   Fetch all user from database
+    static func fetchUser() {
+        Database.database().reference().child("users").observeSingleEvent(of: .childAdded, with: { snapshot in
+            print(snapshot , snapshot.key)
+            let user = snapshot.value as? [String : AnyObject]
         })
     }
 }
+
 
 
 struct ChatUser {

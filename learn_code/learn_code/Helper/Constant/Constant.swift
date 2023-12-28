@@ -83,6 +83,7 @@ public enum UIName {
 
 public enum UINavigationTile {
     static let chatHistory = "Chat History"
+    static let chats = "Chats"
 }
 
 public enum UIPlaceholder {

@@ -176,15 +176,27 @@
                                     <constraint firstItem="TxY-TX-iX9" firstAttribute="trailing" secondItem="u1F-Ud-2eK" secondAttribute="trailing" id="qyp-Zq-SzT"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jg5-BB-MIM">
+                                <rect key="frame" x="50" y="152.33333333333334" width="293" height="35"/>
+                                <color key="tintColor" red="0.43529411759999997" green="0.0" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Logout"/>
+                                <connections>
+                                    <action selector="onClickLogoutAction:" destination="pH9-sl-SAW" eventType="touchUpInside" id="kiJ-IO-8eS"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="5js-s7-Pni"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="jg5-BB-MIM" firstAttribute="leading" secondItem="5js-s7-Pni" secondAttribute="leading" constant="50" id="51e-1j-YIs"/>
                             <constraint firstItem="XtS-ag-Jmv" firstAttribute="leading" secondItem="5js-s7-Pni" secondAttribute="leading" id="B3L-Y5-PtN"/>
                             <constraint firstItem="XtS-ag-Jmv" firstAttribute="top" secondItem="b7F-l6-gOh" secondAttribute="top" id="Lyw-fi-hYm"/>
                             <constraint firstItem="XtS-ag-Jmv" firstAttribute="height" secondItem="b7F-l6-gOh" secondAttribute="height" multiplier="0.12" id="Zbj-kN-6uT"/>
+                            <constraint firstItem="5js-s7-Pni" firstAttribute="trailing" secondItem="jg5-BB-MIM" secondAttribute="trailing" constant="50" id="hLh-tE-1Cd"/>
                             <constraint firstItem="5js-s7-Pni" firstAttribute="trailing" secondItem="XtS-ag-Jmv" secondAttribute="trailing" id="vIn-zB-1Eg"/>
+                            <constraint firstItem="jg5-BB-MIM" firstAttribute="top" secondItem="XtS-ag-Jmv" secondAttribute="bottom" constant="50" id="xxc-10-NdR"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" id="uxN-Dz-Wyg">

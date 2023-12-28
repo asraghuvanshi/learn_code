@@ -26,6 +26,7 @@ class HomeViewController : UIViewController {
         self.navigationController?.isNavigationBarHidden = true
 //        imgBack.image = UIImage(named: ImageCollection.backImage)
         imgChat.image = UIImage(named: ImageCollection.chatIcon)
+        DatabaseManager.fetchUser()
     }
     
     

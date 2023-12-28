@@ -79,7 +79,7 @@ class LoginViewController : UIViewController {
                     let result = authData.user
                     UserDefaults.standard.set(result.email, forKey: "userEmail")
                     SharedInstance.shared.moveToDashboard() // move to dashboard screen
-                    
+
                 })
             }
         }

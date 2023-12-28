@@ -768,17 +768,63 @@
                                 <rect key="frame" x="0.0" y="103.66666666666669" width="393" height="664.33333333333326"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f9E-vV-Ta0">
+                                <rect key="frame" x="10" y="773" width="373" height="64"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hSj-Sa-qEZ">
+                                        <rect key="frame" x="20" y="10" width="293" height="44"/>
+                                        <subviews>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="bd9-Uu-Jj0">
+                                                <rect key="frame" x="0.0" y="0.0" width="293" height="44"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="textColor" systemColor="labelColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="bd9-Uu-Jj0" firstAttribute="top" secondItem="hSj-Sa-qEZ" secondAttribute="top" id="Fda-P4-QeZ"/>
+                                            <constraint firstItem="bd9-Uu-Jj0" firstAttribute="leading" secondItem="hSj-Sa-qEZ" secondAttribute="leading" id="Tvh-5L-xsu"/>
+                                            <constraint firstAttribute="bottom" secondItem="bd9-Uu-Jj0" secondAttribute="bottom" id="iyI-Ox-hKU"/>
+                                            <constraint firstAttribute="trailing" secondItem="bd9-Uu-Jj0" secondAttribute="trailing" id="wAD-V1-60R"/>
+                                        </constraints>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J1n-9I-TWp">
+                                        <rect key="frame" x="323" y="9" width="40" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="IBe-W7-Qnt"/>
+                                            <constraint firstAttribute="height" constant="40" id="dD1-GA-JGe"/>
+                                        </constraints>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="hSj-Sa-qEZ" firstAttribute="leading" secondItem="f9E-vV-Ta0" secondAttribute="leading" constant="20" id="27Y-ai-ahm"/>
+                                    <constraint firstItem="J1n-9I-TWp" firstAttribute="leading" secondItem="hSj-Sa-qEZ" secondAttribute="trailing" constant="10" id="Hdk-B3-9yB"/>
+                                    <constraint firstAttribute="trailing" secondItem="J1n-9I-TWp" secondAttribute="trailing" constant="10" id="WVU-nG-zXP"/>
+                                    <constraint firstAttribute="bottom" secondItem="hSj-Sa-qEZ" secondAttribute="bottom" constant="10" id="bEx-eH-It5"/>
+                                    <constraint firstItem="hSj-Sa-qEZ" firstAttribute="top" secondItem="f9E-vV-Ta0" secondAttribute="top" constant="10" id="lBz-Ra-nbl"/>
+                                    <constraint firstAttribute="trailing" secondItem="J1n-9I-TWp" secondAttribute="trailing" constant="10" id="opF-IL-mjg"/>
+                                    <constraint firstAttribute="bottom" secondItem="J1n-9I-TWp" secondAttribute="bottom" constant="15" id="rmq-Cv-ba9"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="qBw-IN-qfW"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="qBw-IN-qfW" firstAttribute="trailing" secondItem="wKL-Sv-rhD" secondAttribute="trailing" id="Bzl-pV-ISV"/>
                             <constraint firstItem="0Hg-TN-wil" firstAttribute="top" secondItem="wKL-Sv-rhD" secondAttribute="bottom" constant="10" id="GHj-ha-p3D"/>
-                            <constraint firstItem="qBw-IN-qfW" firstAttribute="bottom" secondItem="0Hg-TN-wil" secondAttribute="bottom" constant="50" id="LqB-rf-MAd"/>
+                            <constraint firstItem="f9E-vV-Ta0" firstAttribute="top" secondItem="0Hg-TN-wil" secondAttribute="bottom" constant="5" id="GfM-vH-wy4"/>
+                            <constraint firstItem="f9E-vV-Ta0" firstAttribute="height" secondItem="b96-WH-wpd" secondAttribute="height" multiplier="0.075" id="GrK-Tj-TFY"/>
                             <constraint firstItem="0Hg-TN-wil" firstAttribute="leading" secondItem="qBw-IN-qfW" secondAttribute="leading" id="XhB-8M-Cuq"/>
                             <constraint firstItem="wKL-Sv-rhD" firstAttribute="top" secondItem="b96-WH-wpd" secondAttribute="top" id="ZV5-mV-ney"/>
                             <constraint firstItem="wKL-Sv-rhD" firstAttribute="leading" secondItem="b96-WH-wpd" secondAttribute="leading" id="hgb-xF-UbN"/>
                             <constraint firstItem="qBw-IN-qfW" firstAttribute="trailing" secondItem="0Hg-TN-wil" secondAttribute="trailing" id="puh-gk-y7M"/>
+                            <constraint firstAttribute="bottom" secondItem="f9E-vV-Ta0" secondAttribute="bottom" constant="15" id="q1Z-vX-PT2"/>
+                            <constraint firstItem="qBw-IN-qfW" firstAttribute="trailing" secondItem="f9E-vV-Ta0" secondAttribute="trailing" constant="10" id="qLC-ba-qXH"/>
+                            <constraint firstItem="f9E-vV-Ta0" firstAttribute="leading" secondItem="qBw-IN-qfW" secondAttribute="leading" constant="10" id="xqS-Xl-x0g"/>
                             <constraint firstItem="wKL-Sv-rhD" firstAttribute="height" secondItem="b96-WH-wpd" secondAttribute="height" multiplier="0.11" id="ydF-kr-Tjn"/>
                         </constraints>
                     </view>
@@ -786,6 +832,9 @@
                         <outlet property="conversationTableView" destination="0Hg-TN-wil" id="VDQ-h3-Gze"/>
                         <outlet property="imgBack" destination="tbK-2X-PdY" id="S6b-HI-V3v"/>
                         <outlet property="lblTitle" destination="6nc-b2-Pnw" id="gDt-4z-euO"/>
+                        <outlet property="messageSendBttn" destination="J1n-9I-TWp" id="ma5-nc-Q2x"/>
+                        <outlet property="senderInnerView" destination="hSj-Sa-qEZ" id="4qQ-rO-7U0"/>
+                        <outlet property="senderOuterView" destination="f9E-vV-Ta0" id="QeU-xf-1cu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bv7-fJ-dSV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -796,6 +845,9 @@
     <resources>
         <image name="back_ic" width="32" height="32"/>
         <image name="mobappbg" width="675" height="450"/>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
