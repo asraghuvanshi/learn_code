@@ -12,7 +12,7 @@ target 'learn_code' do
   pod 'FirebaseDatabase'
   pod 'FirebaseStorage'
   pod 'FirebaseCrashlytics'
-  pod 'MessageKit'
+ # pod 'MessageKit'
   pod 'JGProgressHUD'
   pod 'RealmSwift'
   pod 'SDWebImage'
