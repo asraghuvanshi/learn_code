@@ -15,6 +15,7 @@
 		9D3502D62B3560AD007D1D6D /* ChatUserListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D3502D42B3560AD007D1D6D /* ChatUserListCell.xib */; };
 		9D3502D82B35743B007D1D6D /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3502D72B35743B007D1D6D /* Helper.swift */; };
 		9D3502DC2B3592CE007D1D6D /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3502DB2B3592CE007D1D6D /* DatabaseManager.swift */; };
+		9D54285E2B3DF81000DEDCE4 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D54285D2B3DF81000DEDCE4 /* UserModel.swift */; };
 		9D5A30CD2B30290F0035B108 /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5A30CC2B30290F0035B108 /* MainTabController.swift */; };
 		9D5A30D02B302B690035B108 /* Tab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D5A30CF2B302B690035B108 /* Tab.storyboard */; };
 		9D5A30D22B3032980035B108 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5A30D12B3032980035B108 /* HomeViewController.swift */; };
@@ -54,7 +55,6 @@
 		9D9262CA2B3BE6530053A018 /* ReceiverUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9262C82B3BE6530053A018 /* ReceiverUserCell.swift */; };
 		9D9262CB2B3BE6530053A018 /* ReceiverUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D9262C92B3BE6530053A018 /* ReceiverUserCell.xib */; };
 		9DD6F2642B3AB72000C92710 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD6F2632B3AB72000C92710 /* ConversationViewController.swift */; };
-		9DD6F2682B3AF10300C92710 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD6F2672B3AF10300C92710 /* StorageManager.swift */; };
 		9DDCB3432B1B72AE00AEAC49 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDCB3422B1B72AE00AEAC49 /* Color.swift */; };
 		9DDCB3452B1B962600AEAC49 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDCB3442B1B962600AEAC49 /* IntroViewController.swift */; };
 		9DDCB3482B1B9B4300AEAC49 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDCB3472B1B9B4300AEAC49 /* LoginViewController.swift */; };
@@ -94,6 +94,7 @@
 		9D3502D42B3560AD007D1D6D /* ChatUserListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatUserListCell.xib; sourceTree = "<group>"; };
 		9D3502D72B35743B007D1D6D /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		9D3502DB2B3592CE007D1D6D /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
+		9D54285D2B3DF81000DEDCE4 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		9D5A30CC2B30290F0035B108 /* MainTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabController.swift; sourceTree = "<group>"; };
 		9D5A30CF2B302B690035B108 /* Tab.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Tab.storyboard; sourceTree = "<group>"; };
 		9D5A30D12B3032980035B108 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -136,7 +137,6 @@
 		9D9262C82B3BE6530053A018 /* ReceiverUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiverUserCell.swift; sourceTree = "<group>"; };
 		9D9262C92B3BE6530053A018 /* ReceiverUserCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReceiverUserCell.xib; sourceTree = "<group>"; };
 		9DD6F2632B3AB72000C92710 /* ConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
-		9DD6F2672B3AF10300C92710 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		9DDCB3422B1B72AE00AEAC49 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		9DDCB3442B1B962600AEAC49 /* IntroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
 		9DDCB3472B1B9B4300AEAC49 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -199,7 +199,7 @@
 		9D3502D92B359291007D1D6D /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				9DD6F2662B3AF0F200C92710 /* StorageManager */,
+				9D54285C2B3DF7F800DEDCE4 /* UserModel */,
 				9D3502DA2B3592B4007D1D6D /* DatabaseManager */,
 			);
 			path = Model;
@@ -211,6 +211,14 @@
 				9D3502DB2B3592CE007D1D6D /* DatabaseManager.swift */,
 			);
 			path = DatabaseManager;
+			sourceTree = "<group>";
+		};
+		9D54285C2B3DF7F800DEDCE4 /* UserModel */ = {
+			isa = PBXGroup;
+			children = (
+				9D54285D2B3DF81000DEDCE4 /* UserModel.swift */,
+			);
+			path = UserModel;
 			sourceTree = "<group>";
 		};
 		9D5A30CA2B301FC40035B108 /* Login Registration */ = {
@@ -390,14 +398,6 @@
 				9D9262C92B3BE6530053A018 /* ReceiverUserCell.xib */,
 			);
 			path = ChatView;
-			sourceTree = "<group>";
-		};
-		9DD6F2662B3AF0F200C92710 /* StorageManager */ = {
-			isa = PBXGroup;
-			children = (
-				9DD6F2672B3AF10300C92710 /* StorageManager.swift */,
-			);
-			path = StorageManager;
 			sourceTree = "<group>";
 		};
 		9DDCB3462B1B9B1C00AEAC49 /* AppConfiguration */ = {
@@ -697,7 +697,6 @@
 			files = (
 				9D5A30D62B3032E00035B108 /* LeaderboardViewController.swift in Sources */,
 				9D2981D42B1C4E3600152E8A /* RegisterViewController.swift in Sources */,
-				9DD6F2682B3AF10300C92710 /* StorageManager.swift in Sources */,
 				9D9262CA2B3BE6530053A018 /* ReceiverUserCell.swift in Sources */,
 				9D605A6F2B17C2EC00214D2B /* CommonExtension.swift in Sources */,
 				9D0CFF282B2E1F7800D07AA8 /* VerificationViewController.swift in Sources */,
@@ -717,6 +716,7 @@
 				9D25C6542B317B1E00D51D07 /* ChatHistoryViewController.swift in Sources */,
 				9D853EEC2B1907660053153E /* Validations.swift in Sources */,
 				9D8B7FDA2B34442C003D39BB /* ChatHistoryCell.swift in Sources */,
+				9D54285E2B3DF81000DEDCE4 /* UserModel.swift in Sources */,
 				9D5A30D42B3032A60035B108 /* ProfileViewController.swift in Sources */,
 				9D605A6D2B17C27800214D2B /* Constant.swift in Sources */,
 				9D8B7FDE2B34462B003D39BB /* ActiveUserCell.swift in Sources */,

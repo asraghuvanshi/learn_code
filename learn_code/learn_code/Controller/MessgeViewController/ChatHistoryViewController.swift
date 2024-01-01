@@ -19,6 +19,7 @@ class ChatHistoryViewController : UIViewController {
     
     @IBOutlet weak var chatTableView: UITableView!
     
+    var userListData: [UserResponse]?
     
     var profileData = ["image1","image2","image3","image4","image5","image6"]
     var userName = ["Christlle Jolly", "Michelle", "Christal", "Shailly", "Mercy", "Rubina Fleam"]
@@ -38,6 +39,12 @@ class ChatHistoryViewController : UIViewController {
             self.imgChat.image = UIImage(named: ImageCollection.chatIcon)
         }
         
+        DatabaseManager.shared.fetchUsers(completion: { userData , error in
+            DispatchQueue.main.async {[weak self] in
+                self?.userListData = userData
+                self?.chatTableView.reloadData()
+            }
+        })
     }
     
     
@@ -52,6 +59,7 @@ class ChatHistoryViewController : UIViewController {
         self.chatTableView.rowHeight = UITableView.automaticDimension
         
         self.chatTableView.scrollIndicatorInsets = .zero
+       
     }
     
     //  MARK:  OnClick Back Button Action
@@ -77,7 +85,7 @@ extension ChatHistoryViewController : UITableViewDataSource {
         if section == 0 {
             return 1
         } else {
-            return self.profileData.count
+            return self.userListData?.count ?? 0
         }
     }
     
@@ -87,7 +95,9 @@ extension ChatHistoryViewController : UITableViewDataSource {
             return chatCell
         } else if indexPath.section == 1 {
             let userListCell = tableView.dequeueReusableCell(withIdentifier: ChatUserListCell.className, for: indexPath) as! ChatUserListCell
-            userListCell.configureUserList(profile: self.profileData[indexPath.row], name: self.userName[indexPath.row])
+            if let unwrappedData = self.userListData{
+                userListCell.configureUserList(userData: unwrappedData[indexPath.row])
+            }
             return userListCell
         }
       return UITableViewCell()

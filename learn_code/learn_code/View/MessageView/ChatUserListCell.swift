@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class ChatUserListCell: UITableViewCell {
 
@@ -29,15 +30,18 @@ class ChatUserListCell: UITableViewCell {
     }
  
     
-    func configureUserList(profile: String , name: String) {
-        
-        self.profileImage.image = UIImage(named: profile)
+    func configureUserList(userData: UserResponse) {
+        if let urlString = userData.profileImageURL, let imageUrl = URL(string: urlString) {
+            profileImage.sd_setImage(with: imageUrl)
+        }
+
+        self.profileImage.image = UIImage(named: "image")
         self.profileImage.contentMode = .scaleAspectFill
         self.profileImage.setBorder(radius: self.profileImage.frame.size.height / 2, color: .appColor, width: 1.5)
         
         self.lblActiveTiming.configureLabel(text: "10:30Am", color: .blackColor, fontStyle: .bold, fontSize: FontSize.title10.generateFontSize())
         
-        self.lblUsername.configureLabel(text: name, color: .blackColor, fontStyle: .bold, fontSize: FontSize.title16.generateFontSize())
+        self.lblUsername.configureLabel(text: userData.fullName ?? "", color: .blackColor, fontStyle: .bold, fontSize: FontSize.title16.generateFontSize())
         self.lblLastMessage.configureLabel(text: "what happening", color: .lightGray, fontStyle: .regular, fontSize: FontSize.title12.generateFontSize())
 
         self.imgActiveStatus.configureLabel(text: "Seen", color: .lightGray, fontStyle: .semibold, fontSize: FontSize.title12.generateFontSize())

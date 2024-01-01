@@ -163,6 +163,12 @@
                                             <action selector="onClickChatAction:" destination="pH9-sl-SAW" eventType="touchUpInside" id="atQ-CY-Jtm"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Txz-7C-9sr">
+                                        <rect key="frame" x="175.66666666666666" y="71.333333333333329" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
@@ -170,10 +176,12 @@
                                     <constraint firstAttribute="bottom" secondItem="u1F-Ud-2eK" secondAttribute="bottom" id="H4V-56-O8G"/>
                                     <constraint firstItem="TxY-TX-iX9" firstAttribute="top" secondItem="u1F-Ud-2eK" secondAttribute="top" id="JbJ-iC-aPV"/>
                                     <constraint firstItem="Mvv-RO-oaR" firstAttribute="leading" secondItem="XtS-ag-Jmv" secondAttribute="leading" constant="20" id="MYV-vC-NG3"/>
+                                    <constraint firstAttribute="bottom" secondItem="Txz-7C-9sr" secondAttribute="bottom" constant="10" id="Ywx-Jx-Dtt"/>
                                     <constraint firstAttribute="trailing" secondItem="u1F-Ud-2eK" secondAttribute="trailing" constant="20" id="aGG-xH-dg8"/>
                                     <constraint firstAttribute="bottom" secondItem="Mvv-RO-oaR" secondAttribute="bottom" constant="10" id="b4b-0N-xNX"/>
                                     <constraint firstItem="TxY-TX-iX9" firstAttribute="leading" secondItem="u1F-Ud-2eK" secondAttribute="leading" id="q8e-Y2-dlu"/>
                                     <constraint firstItem="TxY-TX-iX9" firstAttribute="trailing" secondItem="u1F-Ud-2eK" secondAttribute="trailing" id="qyp-Zq-SzT"/>
+                                    <constraint firstItem="Txz-7C-9sr" firstAttribute="centerX" secondItem="XtS-ag-Jmv" secondAttribute="centerX" id="wR4-V5-IrU"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jg5-BB-MIM">
@@ -205,6 +213,7 @@
                     <connections>
                         <outlet property="imgBack" destination="Mvv-RO-oaR" id="rth-8t-jlW"/>
                         <outlet property="imgChat" destination="TxY-TX-iX9" id="SmM-RY-HrD"/>
+                        <outlet property="lblHeaderTitle" destination="Txz-7C-9sr" id="68h-ha-D3y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xA0-n9-hpZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

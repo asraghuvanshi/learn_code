@@ -6,13 +6,14 @@
 //
 
 import UIKit
-
+import FirebaseAuth
+import FirebaseCore
 
 class ProfileViewController : UIViewController {
     //  MARK:  UIView IBOutlet Connection
     
+    @IBOutlet weak var lblHeaderTitle: UILabel!
     @IBOutlet weak var imgBack: UIImageView!
-    
     @IBOutlet weak var imgChat: UIImageView!
     
     
@@ -23,8 +24,23 @@ class ProfileViewController : UIViewController {
     }
     
     func configureView() {
-        imgBack.image = UIImage(named: ImageCollection.backImage)
-        imgChat.image = UIImage(named: ImageCollection.chatIcon)
+        DispatchQueue.main.async {
+            [weak self] in
+            self?.imgBack.image = UIImage(named: ImageCollection.backImage)
+            self?.imgChat.image = UIImage(named: ImageCollection.chatIcon)
+        }
+        updateCurrentUser()
+    }
+    
+    
+    func updateCurrentUser() {
+        guard let userId = FirebaseAuth.Auth.auth().currentUser?.uid else { return }
+
+        DatabaseManager.shared.fetchCurrentUser(userId: userId, completion: {username,error in
+            DispatchQueue.main.async { [weak self] in
+                self?.lblHeaderTitle.configureLabel(text: username, color: .appColor, fontStyle: .extraBold, fontSize: FontSize.navigationTitle18.generateFontSize())
+            }
+        })
     }
     
     @IBAction func onClickChatAction(_ sender: Any) {

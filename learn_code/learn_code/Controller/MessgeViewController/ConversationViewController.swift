@@ -6,7 +6,8 @@
 //
 
 import UIKit
-
+import FirebaseCore
+import FirebaseDatabase
 
 
 class ConversationViewController : UIViewController {
@@ -20,14 +21,15 @@ class ConversationViewController : UIViewController {
     
     @IBOutlet weak var senderOuterView: UIView!
     @IBOutlet weak var senderInnerView: UIView!
+    @IBOutlet weak var messageTextField: UITextView!
+    
     @IBOutlet weak var messageSendBttn: UIButton!
     
     
     
     //  MARK:  Private and Public Variables
-    
-   
-    
+    var isNewConversation: Bool = false
+    var userEmail: String = ""
     //  MARK:  UIView Lifecycle Delegate Methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,15 +51,13 @@ class ConversationViewController : UIViewController {
 
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
+            self.navigationController?.isNavigationBarHidden = true
             self.imgBack.image = UIImage(named: ImageCollection.backImage)
             self.messageSendBttn.setImage(UIImage(named: ImageCollection.chatIcon), for: .normal)
             self.lblTitle.configureLabel(text: UINavigationTile.chats, color: .blackColor, fontStyle: .semibold, fontSize: FontSize.navigationTitle18.generateFontSize())
             
             self.senderOuterView.setBorder(radius: self.senderOuterView.frame.size.height / 2, color: .appColor, width: 0.8)
-            
         }
-        self.navigationController?.isNavigationBarHidden = true
-        
     }
     
     //   MARK:  Assign UITableCell Delegate
@@ -81,6 +81,15 @@ class ConversationViewController : UIViewController {
             self.navigationController?.popViewController(animated: true)
         }
     }
+    
+    @IBAction func onClickSendAction(_ sender: Any) {
+//        let dbRef = Database.database().reference().child("messages")
+//        let reference = dbRef.childByAutoId()
+//        let textMessage = ["sentMessages": self.messageTextField.text ?? ""]
+//
+//        reference.updateChildValues(textMessage)
+    }
+    
 }
 
 
