@@ -19,7 +19,6 @@ class SenderUserCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        configureSenderCell()
         
     }
 
@@ -31,11 +30,11 @@ class SenderUserCell: UITableViewCell {
     
     
     //  MARK:  Configure Sender Cell
-    func configureSenderCell() {
+    func configureSenderCell(message: String) {
         self.imgSenderProfile.image = UIImage(named: "image1")
         self.imgSenderProfile.contentMode = .scaleAspectFill
         self.imgSenderProfile.setBorder(radius: self.imgSenderProfile.frame.size.height / 2, color: .appColor , width: 1.5)
-        self.lblTextMessage.text = "Lorem Ipsum, lorem ipsum lorem ipsum lorem ipsum lorem ipsum"
+        self.lblTextMessage.text = message
         self.lblTextMessage.numberOfLines = .zero
         self.lblTextMessage.lineBreakMode = .byWordWrapping
         self.lblTextMessage.textColor = .whiteColor

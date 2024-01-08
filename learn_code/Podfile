@@ -12,10 +12,11 @@ target 'learn_code' do
   pod 'FirebaseDatabase'
   pod 'FirebaseStorage'
   pod 'FirebaseCrashlytics'
- # pod 'MessageKit'
-  pod 'JGProgressHUD'
+  pod 'FirebaseMessaging'
+
   pod 'RealmSwift'
   pod 'SDWebImage'
+  
   
   target 'learn_codeTests' do
     inherit! :search_paths

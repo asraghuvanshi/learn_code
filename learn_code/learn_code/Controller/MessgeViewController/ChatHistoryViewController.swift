@@ -19,7 +19,7 @@ class ChatHistoryViewController : UIViewController {
     
     @IBOutlet weak var chatTableView: UITableView!
     
-    var userListData: [UserResponse]?
+    var userListData: [(userId: String, userResponse: UserResponse)]?
     
     var profileData = ["image1","image2","image3","image4","image5","image6"]
     var userName = ["Christlle Jolly", "Michelle", "Christal", "Shailly", "Mercy", "Rubina Fleam"]
@@ -55,7 +55,7 @@ class ChatHistoryViewController : UIViewController {
         self.chatTableView.delegate = self
         self.chatTableView.dataSource = self
         
-        self.chatTableView.estimatedRowHeight = 140
+        self.chatTableView.estimatedRowHeight = 240
         self.chatTableView.rowHeight = UITableView.automaticDimension
         
         self.chatTableView.scrollIndicatorInsets = .zero
@@ -71,11 +71,13 @@ class ChatHistoryViewController : UIViewController {
     
 }
 
-
+//  MARK:  UITableView Delegate Methods
 extension ChatHistoryViewController : UITableViewDelegate {
     
 }
 
+
+//  MARK:  UITableView DataSource Methods
 extension ChatHistoryViewController : UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
@@ -96,7 +98,7 @@ extension ChatHistoryViewController : UITableViewDataSource {
         } else if indexPath.section == 1 {
             let userListCell = tableView.dequeueReusableCell(withIdentifier: ChatUserListCell.className, for: indexPath) as! ChatUserListCell
             if let unwrappedData = self.userListData{
-                userListCell.configureUserList(userData: unwrappedData[indexPath.row])
+                userListCell.configureUserList(userData: unwrappedData[indexPath.row].userResponse)
             }
             return userListCell
         }
@@ -115,6 +117,10 @@ extension ChatHistoryViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let chatVC = AppStoryboard.Main.instance.instantiateViewController(withIdentifier: ConversationViewController.className) as! ConversationViewController
         chatVC.hidesBottomBarWhenPushed = true
+        if let unwrappedData = self.userListData{
+            chatVC.userData = unwrappedData[indexPath.row].userResponse
+            chatVC.receiverId = unwrappedData[indexPath.row].userId
+        }
         self.navigationController?.pushViewController(chatVC, animated: true)
     }
 }

@@ -25,7 +25,6 @@ class ReceiverUserCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        configureReceiverCell()
         
     }
 
@@ -36,13 +35,13 @@ class ReceiverUserCell: UITableViewCell {
     
     
     //   MARK:  Configure Receiver Cell
-    func configureReceiverCell() {
+    func configureReceiverCell(message: String) {
         
         self.imgReceiverProfile.image = UIImage(named: "image2")
         self.imgReceiverProfile.contentMode = .scaleAspectFill
         self.imgReceiverProfile.setBorder(radius: self.imgReceiverProfile.frame.size.height / 2, color: .appColor , width: 1.5)
 
-        self.lblTextMessage.text = "Hii this is programmer Hii this is programmer Hii this is programmer Hii this is programmer"
+        self.lblTextMessage.text = message
         self.lblTextMessage.numberOfLines = .zero
         self.lblTextMessage.lineBreakMode = .byWordWrapping
         self.lblTextMessage.textColor = .white

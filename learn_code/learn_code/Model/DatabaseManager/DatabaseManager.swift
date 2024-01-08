@@ -49,17 +49,20 @@ class DatabaseManager {
     }
     
     // MARK: - Fetch all users from database
-    func fetchUsers(completion: @escaping ([UserResponse], Error?) -> Void) {
+    func fetchUsers(completion: @escaping ([(userId: String, userResponse: UserResponse)], Error?) -> Void) {
         reference.child("users").observeSingleEvent(of: .value, with: { snapshot in
-            var users: [UserResponse] = []
+            var users: [(userId: String, userResponse: UserResponse)] = []
             
             for child in snapshot.children {
                 if let childSnapshot = child as? DataSnapshot,
                    let userDict = childSnapshot.value as? [String: Any] {
                     do {
+                        let userId = childSnapshot.key
                         let userData = try JSONSerialization.data(withJSONObject: userDict, options: [])
-                        let userResponse = try JSONDecoder().decode(UserResponse.self, from: userData)
-                        users.append(userResponse)
+                        var userResponse = try JSONDecoder().decode(UserResponse.self, from: userData)
+                        userResponse.userId = userId
+                        let userTuple = (userId: userId, userResponse: userResponse)
+                        users.append(userTuple)
                     } catch {
                         print("Error decoding user data: \(error)")
                         completion([], error)
@@ -71,7 +74,8 @@ class DatabaseManager {
             completion(users, nil)
         })
     }
-    
+
+
     // MARK: - Helper functions
     
     private func uploadProfileImage(_ image: UIImage, completion: @escaping (String?, Error?) -> Void) {
@@ -144,26 +148,31 @@ class DatabaseManager {
 
 extension DatabaseManager {
     
-    public func createNewConversation(with userEmail: String , firstMessage: ChatMessage, completion: @escaping (Bool) -> Void) {
+    public func createNewConversation(with userEmail: String , message: Message, completion: @escaping (Bool) -> Void) {
         
     }
     
-    public func getAllConversation(with email: String ,completion: @escaping (Result<String, Error>) -> Void ) {
+    public func fetchAllConversationData(completion: @escaping (ConversationModel?, Error?) -> Void) {
         
-    }
-    
-    public func getAllMessagesFromConversation(with id: String, completion: @escaping (Result<String, Error>) -> Void) {
+        let ref = Database.database().reference().child("messages")
         
-    }
-    
-    public func sendMessage(to conversation: String, messages: ChatMessage, completion: @escaping (Bool) -> Void) {
-        
+        ref.observe(.childAdded, with: { (snapshot) in
+            let userDict =  snapshot.value as? [String: Any]
+            do {
+                let userData = try JSONSerialization.data(withJSONObject: userDict, options: [])
+                let userResponse = try JSONDecoder().decode(ConversationModel.self, from: userData)
+                completion(userResponse, nil)
+                
+            } catch {
+                completion(nil, error)
+            }
+        })
     }
 }
 
 
 //  MARK:  ChatMessage Struct
-public struct ChatMessage {
+public struct Message {
     var sender: String
     var timeStamp: Date
     var messageContent: String

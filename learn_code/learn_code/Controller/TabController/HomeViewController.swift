@@ -6,7 +6,8 @@
 //
 
 import UIKit
-
+import FirebaseCore
+import FirebaseAuth
 
 class HomeViewController : UIViewController {
     
@@ -22,7 +23,8 @@ class HomeViewController : UIViewController {
     
     //  MARK:  OnClick Set Init View Layout
     func configureUIView() {
-        
+        let loggedUserEmail = FirebaseAuth.Auth.auth().currentUser?.email as? String
+        UserDefaults.standard.set(loggedUserEmail, forKey: "userEmail")
         self.navigationController?.isNavigationBarHidden = true
 //        imgBack.image = UIImage(named: ImageCollection.backImage)
         imgChat.image = UIImage(named: ImageCollection.chatIcon)

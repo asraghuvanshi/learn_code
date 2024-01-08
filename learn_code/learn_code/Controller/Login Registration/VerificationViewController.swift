@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import UserNotifications
+import FirebaseMessaging
 
 class VerificationViewController : UIViewController {
     
@@ -48,3 +50,5 @@ extension VerificationViewController {
         self.lblVerificationTitle.numberOfLines = .zero
     }
 }
+
+

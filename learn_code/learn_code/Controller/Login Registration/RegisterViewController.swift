@@ -68,7 +68,8 @@ class RegisterViewController : UIViewController {
             print(error)
         })
         
-        SharedInstance.shared.moveToDashboard()
+        let loginVC = AppStoryboard.Main.instance.instantiateViewController(withIdentifier: VerificationViewController.className) as! VerificationViewController
+        self.navigationController?.pushViewController(loginVC, animated: true)
     }
     
     //  MARK:  OnClick Gender Clicked Action

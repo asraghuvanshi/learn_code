@@ -33,6 +33,7 @@
 		9D605A692B17B99A00214D2B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D605A682B17B99A00214D2B /* Main.storyboard */; };
 		9D605A6D2B17C27800214D2B /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D605A6C2B17C27800214D2B /* Constant.swift */; };
 		9D605A6F2B17C2EC00214D2B /* CommonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D605A6E2B17C2EC00214D2B /* CommonExtension.swift */; };
+		9D643D0D2B4C2719002A45C3 /* ConversationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D643D0C2B4C2719002A45C3 /* ConversationModel.swift */; };
 		9D704E2B6707A604CCB3E752 /* Pods_learn_code_learn_codeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B30E6A7080B4825D4C902699 /* Pods_learn_code_learn_codeUITests.framework */; };
 		9D853EDE2B18FB640053153E /* OpenSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9D853ED32B18FB630053153E /* OpenSans-LightItalic.ttf */; };
 		9D853EDF2B18FB640053153E /* OpenSans-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9D853ED42B18FB630053153E /* OpenSans-ExtraBoldItalic.ttf */; };
@@ -49,11 +50,11 @@
 		9D8B7FDB2B34442C003D39BB /* ChatHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D8B7FD92B34442C003D39BB /* ChatHistoryCell.xib */; };
 		9D8B7FDE2B34462B003D39BB /* ActiveUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8B7FDC2B34462B003D39BB /* ActiveUserCell.swift */; };
 		9D8B7FDF2B34462B003D39BB /* ActiveUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D8B7FDD2B34462B003D39BB /* ActiveUserCell.xib */; };
-		9D8B7FE22B346007003D39BB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9D8B7FE12B346007003D39BB /* GoogleService-Info.plist */; };
 		9D9262C62B3BE6360053A018 /* SenderUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9262C42B3BE6360053A018 /* SenderUserCell.swift */; };
 		9D9262C72B3BE6360053A018 /* SenderUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D9262C52B3BE6360053A018 /* SenderUserCell.xib */; };
 		9D9262CA2B3BE6530053A018 /* ReceiverUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9262C82B3BE6530053A018 /* ReceiverUserCell.swift */; };
 		9D9262CB2B3BE6530053A018 /* ReceiverUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D9262C92B3BE6530053A018 /* ReceiverUserCell.xib */; };
+		9DCFFBCA2B46CD7A00250472 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9DCFFBC92B46CD7A00250472 /* GoogleService-Info.plist */; };
 		9DD6F2642B3AB72000C92710 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD6F2632B3AB72000C92710 /* ConversationViewController.swift */; };
 		9DDCB3432B1B72AE00AEAC49 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDCB3422B1B72AE00AEAC49 /* Color.swift */; };
 		9DDCB3452B1B962600AEAC49 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDCB3442B1B962600AEAC49 /* IntroViewController.swift */; };
@@ -116,6 +117,7 @@
 		9D605A682B17B99A00214D2B /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		9D605A6C2B17C27800214D2B /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		9D605A6E2B17C2EC00214D2B /* CommonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonExtension.swift; sourceTree = "<group>"; };
+		9D643D0C2B4C2719002A45C3 /* ConversationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationModel.swift; sourceTree = "<group>"; };
 		9D853ED32B18FB630053153E /* OpenSans-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-LightItalic.ttf"; sourceTree = "<group>"; };
 		9D853ED42B18FB630053153E /* OpenSans-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
 		9D853ED52B18FB630053153E /* OpenSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-BoldItalic.ttf"; sourceTree = "<group>"; };
@@ -131,11 +133,12 @@
 		9D8B7FD92B34442C003D39BB /* ChatHistoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatHistoryCell.xib; sourceTree = "<group>"; };
 		9D8B7FDC2B34462B003D39BB /* ActiveUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveUserCell.swift; sourceTree = "<group>"; };
 		9D8B7FDD2B34462B003D39BB /* ActiveUserCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActiveUserCell.xib; sourceTree = "<group>"; };
-		9D8B7FE12B346007003D39BB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9D9262C42B3BE6360053A018 /* SenderUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SenderUserCell.swift; sourceTree = "<group>"; };
 		9D9262C52B3BE6360053A018 /* SenderUserCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SenderUserCell.xib; sourceTree = "<group>"; };
 		9D9262C82B3BE6530053A018 /* ReceiverUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiverUserCell.swift; sourceTree = "<group>"; };
 		9D9262C92B3BE6530053A018 /* ReceiverUserCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReceiverUserCell.xib; sourceTree = "<group>"; };
+		9DCFFBC42B46986D00250472 /* learn_codeDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = learn_codeDebug.entitlements; sourceTree = "<group>"; };
+		9DCFFBC92B46CD7A00250472 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9DD6F2632B3AB72000C92710 /* ConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
 		9DDCB3422B1B72AE00AEAC49 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		9DDCB3442B1B962600AEAC49 /* IntroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
@@ -217,6 +220,7 @@
 			isa = PBXGroup;
 			children = (
 				9D54285D2B3DF81000DEDCE4 /* UserModel.swift */,
+				9D643D0C2B4C2719002A45C3 /* ConversationModel.swift */,
 			);
 			path = UserModel;
 			sourceTree = "<group>";
@@ -279,6 +283,7 @@
 		9D605A342B17B8C600214D2B /* learn_code */ = {
 			isa = PBXGroup;
 			children = (
+				9DCFFBC42B46986D00250472 /* learn_codeDebug.entitlements */,
 				9D605A662B17B95800214D2B /* Controller */,
 				9D605A672B17B96800214D2B /* View */,
 				9D3502D92B359291007D1D6D /* Model */,
@@ -286,8 +291,8 @@
 				9DDCB3462B1B9B1C00AEAC49 /* AppConfiguration */,
 				9D605A3E2B17B8C800214D2B /* Assets.xcassets */,
 				9D605A402B17B8C800214D2B /* LaunchScreen.storyboard */,
+				9DCFFBC92B46CD7A00250472 /* GoogleService-Info.plist */,
 				9D605A432B17B8C800214D2B /* Info.plist */,
-				9D8B7FE12B346007003D39BB /* GoogleService-Info.plist */,
 				9D5A30CE2B302B450035B108 /* Storyboard */,
 			);
 			path = learn_code;
@@ -543,9 +548,9 @@
 				9D8B7FDF2B34462B003D39BB /* ActiveUserCell.xib in Resources */,
 				9D853EDF2B18FB640053153E /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				9D853EE32B18FB640053153E /* OpenSans-Light.ttf in Resources */,
-				9D8B7FE22B346007003D39BB /* GoogleService-Info.plist in Resources */,
 				9D853EE82B18FB640053153E /* OpenSans-Regular.ttf in Resources */,
 				9D853EDE2B18FB640053153E /* OpenSans-LightItalic.ttf in Resources */,
+				9DCFFBCA2B46CD7A00250472 /* GoogleService-Info.plist in Resources */,
 				9D605A3F2B17B8C800214D2B /* Assets.xcassets in Resources */,
 				9D853EE62B18FB640053153E /* OpenSans-ExtraBold.ttf in Resources */,
 			);
@@ -717,6 +722,7 @@
 				9D853EEC2B1907660053153E /* Validations.swift in Sources */,
 				9D8B7FDA2B34442C003D39BB /* ChatHistoryCell.swift in Sources */,
 				9D54285E2B3DF81000DEDCE4 /* UserModel.swift in Sources */,
+				9D643D0D2B4C2719002A45C3 /* ConversationModel.swift in Sources */,
 				9D5A30D42B3032A60035B108 /* ProfileViewController.swift in Sources */,
 				9D605A6D2B17C27800214D2B /* Constant.swift in Sources */,
 				9D8B7FDE2B34462B003D39BB /* ActiveUserCell.swift in Sources */,
@@ -889,9 +895,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = learn_code/learn_codeDebug.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = VXY3W6WYGY;
+				DEVELOPMENT_TEAM = PGD32YP8G8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = learn_code/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -902,7 +909,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.360.learn-codeproject";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.360.learn-bytes-code";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

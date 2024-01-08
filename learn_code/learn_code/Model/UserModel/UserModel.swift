@@ -14,9 +14,10 @@ struct UserModel: Codable {
 
 // MARK: - UserResponse
 struct UserResponse: Codable {
+    var userId: String?
     let fullName, userEmail, userMobile: String?
     let profileImageURL: String?
-    
+   
     enum CodingKeys: String, CodingKey {
         case fullName
         case profileImageURL = "profileImageUrl"
