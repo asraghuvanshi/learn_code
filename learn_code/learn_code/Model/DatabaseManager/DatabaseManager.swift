@@ -11,6 +11,14 @@ import FirebaseAuth
 import FirebaseDatabase
 import FirebaseStorage
 
+//  MARK:  ChatMessage Struct
+public struct Message {
+    var sender: String
+    var timeStamp: Date
+    var messageContent: String
+    var messageId: String
+}
+
 
 class DatabaseManager {
     
@@ -60,9 +68,12 @@ class DatabaseManager {
                         let userId = childSnapshot.key
                         let userData = try JSONSerialization.data(withJSONObject: userDict, options: [])
                         var userResponse = try JSONDecoder().decode(UserResponse.self, from: userData)
-                        userResponse.userId = userId
-                        let userTuple = (userId: userId, userResponse: userResponse)
-                        users.append(userTuple)
+                        if FirebaseAuth.Auth.auth().currentUser?.uid != userId {
+                            userResponse.userId = userId
+                            let userTuple = (userId: userId, userResponse: userResponse)
+                            users.append(userTuple)
+                        }
+                        
                     } catch {
                         print("Error decoding user data: \(error)")
                         completion([], error)
@@ -74,8 +85,8 @@ class DatabaseManager {
             completion(users, nil)
         })
     }
-
-
+    
+    
     // MARK: - Helper functions
     
     private func uploadProfileImage(_ image: UIImage, completion: @escaping (String?, Error?) -> Void) {
@@ -144,37 +155,40 @@ class DatabaseManager {
     }
 }
 
-//  MARK:  Sending Messages / Conversation
+//  MARK:  Sending And Fetching Messages/Conversation
 
-extension DatabaseManager {
-    
-    public func createNewConversation(with userEmail: String , message: Message, completion: @escaping (Bool) -> Void) {
-        
-    }
-    
-    public func fetchAllConversationData(completion: @escaping (ConversationModel?, Error?) -> Void) {
-        
-        let ref = Database.database().reference().child("messages")
-        
-        ref.observe(.childAdded, with: { (snapshot) in
-            let userDict =  snapshot.value as? [String: Any]
-            do {
-                let userData = try JSONSerialization.data(withJSONObject: userDict, options: [])
-                let userResponse = try JSONDecoder().decode(ConversationModel.self, from: userData)
-                completion(userResponse, nil)
-                
-            } catch {
-                completion(nil, error)
-            }
-        })
-    }
+
+struct ChatMessage {
+    let senderId: String
+    let receiverId: String
+    let text: String
+    let timestamp: TimeInterval
 }
 
 
-//  MARK:  ChatMessage Struct
-public struct Message {
-    var sender: String
-    var timeStamp: Date
-    var messageContent: String
-    var messageId: String
+class MessageManager {
+    static let shared = MessageManager()
+    
+    private let database = Database.database().reference()
+    
+    func sendMessage(message: ChatMessage) {
+        let messagesRef = database.child("messages").childByAutoId()
+        let messageData: [String: Any] = [
+            "senderId": message.senderId,
+            "receiverId": message.receiverId,
+            "text": message.text,
+            "timestamp": ServerValue.timestamp()
+        ]
+        messagesRef.setValue(messageData)
+    }
+    
+    
+    func fetchConversations(completion: @escaping ([(userId: String, userResponse: ChatMessageModel)], Error?) -> Void) {
+        Database.database().reference().child("messages").observe(.childAdded, with: { snapshot in
+            guard let userDict = snapshot.value as? [String: Any] else { return }
+            
+            print(userDict, "snap value")
+            
+        })
+    }
 }

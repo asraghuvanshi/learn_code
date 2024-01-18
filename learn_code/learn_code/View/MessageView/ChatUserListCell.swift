@@ -20,6 +20,7 @@ class ChatUserListCell: UITableViewCell {
     @IBOutlet weak var imgActiveStatus: UILabel!
     
     
+    var userMessageData: ConversationModel?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -39,9 +40,26 @@ class ChatUserListCell: UITableViewCell {
         self.profileImage.contentMode = .scaleAspectFill
         self.profileImage.setBorder(radius: self.profileImage.frame.size.height / 2, color: .appColor, width: 1.5)
         
-        self.lblActiveTiming.configureLabel(text: "10:30Am", color: .blackColor, fontStyle: .bold, fontSize: FontSize.title10.generateFontSize())
+        
+        
+      
         
         self.lblUsername.configureLabel(text: userData.fullName ?? "", color: .blackColor, fontStyle: .bold, fontSize: FontSize.title16.generateFontSize())
+        
+        guard let messageData = userMessageData else {
+            return
+        }
+        if let timestamp = messageData.timeStamp {
+            let date = Date(timeIntervalSince1970: TimeInterval(timestamp))
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "h:mm a"
+            
+            let formattedTime = dateFormatter.string(from: date)
+            
+            self.lblActiveTiming.configureLabel(text: formattedTime, color: .black, fontStyle: .bold, fontSize: FontSize.title10.generateFontSize())
+        }
+        
         self.lblLastMessage.configureLabel(text: "what happening", color: .lightGray, fontStyle: .regular, fontSize: FontSize.title12.generateFontSize())
 
         self.imgActiveStatus.configureLabel(text: "Seen", color: .lightGray, fontStyle: .semibold, fontSize: FontSize.title12.generateFontSize())

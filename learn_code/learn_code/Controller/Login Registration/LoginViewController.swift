@@ -31,6 +31,7 @@ class LoginViewController : UIViewController {
     //  MARK:  UIView Lifecycle Delegates
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.isNavigationBarHidden = true
         setUIView()
     }
     

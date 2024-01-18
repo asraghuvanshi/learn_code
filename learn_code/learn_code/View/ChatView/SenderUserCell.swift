@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import FirebaseDatabase
+import FirebaseStorage
 
 class SenderUserCell: UITableViewCell {
 
@@ -31,7 +33,13 @@ class SenderUserCell: UITableViewCell {
     
     //  MARK:  Configure Sender Cell
     func configureSenderCell(message: String) {
-        self.imgSenderProfile.image = UIImage(named: "image1")
+        let storageRef = Storage.storage().reference()
+        let imageRef = storageRef.child("profile_images")
+        
+        imageRef.downloadURL(completion: { url , error in
+            print(url)
+        })
+//        self.imgSenderProfile.image = UIImage(named: "image1")
         self.imgSenderProfile.contentMode = .scaleAspectFill
         self.imgSenderProfile.setBorder(radius: self.imgSenderProfile.frame.size.height / 2, color: .appColor , width: 1.5)
         self.lblTextMessage.text = message

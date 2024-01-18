@@ -1,13 +1,15 @@
 //
-//  ChatHistoryViewController.swift
+//  ChatViewController.swift
 //  learn_code
 //
 //  Created by Amit Raghuvanshi on 19/12/2023.
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseCore
 
-class ChatHistoryViewController : UIViewController {
+class ChatViewController : UIViewController {
     
     //  MARK:  UIView IBOutlet Connections
     
@@ -23,6 +25,9 @@ class ChatHistoryViewController : UIViewController {
     
     var profileData = ["image1","image2","image3","image4","image5","image6"]
     var userName = ["Christlle Jolly", "Michelle", "Christal", "Shailly", "Mercy", "Rubina Fleam"]
+    
+    var conversationData: [ConversationModel] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureInitView()
@@ -38,7 +43,11 @@ class ChatHistoryViewController : UIViewController {
             self.imgBack.image = UIImage(named: ImageCollection.backImage)
             self.imgChat.image = UIImage(named: ImageCollection.chatIcon)
         }
+       
+        ///  Fetch  All the Users and Messages
+        self.fetchMessages()
         
+        /// Fetch all user list for chat history
         DatabaseManager.shared.fetchUsers(completion: { userData , error in
             DispatchQueue.main.async {[weak self] in
                 self?.userListData = userData
@@ -59,8 +68,15 @@ class ChatHistoryViewController : UIViewController {
         self.chatTableView.rowHeight = UITableView.automaticDimension
         
         self.chatTableView.scrollIndicatorInsets = .zero
-       
+        
     }
+    
+    
+    //  MARK: Observe Messages
+    func fetchMessages() {
+
+    }
+    
     
     //  MARK:  OnClick Back Button Action
     @IBAction func onClickBackAction(_ sender: Any) {
@@ -71,14 +87,10 @@ class ChatHistoryViewController : UIViewController {
     
 }
 
-//  MARK:  UITableView Delegate Methods
-extension ChatHistoryViewController : UITableViewDelegate {
-    
-}
 
 
-//  MARK:  UITableView DataSource Methods
-extension ChatHistoryViewController : UITableViewDataSource {
+//  MARK:  UITableView Delegate & DataSource Methods
+extension ChatViewController : UITableViewDelegate & UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
@@ -97,12 +109,15 @@ extension ChatHistoryViewController : UITableViewDataSource {
             return chatCell
         } else if indexPath.section == 1 {
             let userListCell = tableView.dequeueReusableCell(withIdentifier: ChatUserListCell.className, for: indexPath) as! ChatUserListCell
-            if let unwrappedData = self.userListData{
+            if let unwrappedData = self.userListData {
                 userListCell.configureUserList(userData: unwrappedData[indexPath.row].userResponse)
+                if self.conversationData.count != 0 && indexPath.row < conversationData.count{
+                    userListCell.userMessageData = conversationData[indexPath.row]
+                }
             }
             return userListCell
         }
-      return UITableViewCell()
+        return UITableViewCell()
     }
     
     

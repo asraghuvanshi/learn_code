@@ -6,6 +6,7 @@ target 'learn_code' do
   use_frameworks!
   
   # Pods for learn_code
+  pod 'IQKeyboardManager' 
   pod 'FirebaseAnalytics'
   pod 'FirebaseAuth'
   pod 'FirebaseFirestore'
@@ -16,6 +17,7 @@ target 'learn_code' do
 
   pod 'RealmSwift'
   pod 'SDWebImage'
+
   
   
   target 'learn_codeTests' do
