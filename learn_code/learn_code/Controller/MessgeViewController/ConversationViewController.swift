@@ -32,14 +32,11 @@ class ConversationViewController : UIViewController {
     
     
     //  MARK:  Private and Public Variables
-    private var messages = [Message]()
-    private var chatMessages = [ChatMessage]()
-    
-    var isNewConversation: Bool = true
-    
-    var userEmail: String = ""
+    var conversationData: [MessageModel] = []
     var userData: UserResponse?
-    var conversationData: [ChatMessageModel] = []
+
+    var isNewConversation: Bool = true
+    var userEmail: String = ""
     var receiverId: String = ""
     var profileUrl: String = ""
     
@@ -55,8 +52,6 @@ class ConversationViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureChatUI()
-      
-        
     }
     
     //  MARK:  View Will Appear
@@ -76,7 +71,6 @@ class ConversationViewController : UIViewController {
             guard let self = self else { return }
             
             // register tableview Cell
-            
             self.registerChatTableCell()
             self.navigationController?.isNavigationBarHidden = true
             self.imgBack.image = UIImage(named: ImageCollection.backImage)
@@ -90,10 +84,18 @@ class ConversationViewController : UIViewController {
             self.lblUserName.configureLabel(text: self.userData?.fullName ?? "", color: .blackColor, fontStyle: .semibold, fontSize: FontSize.navigationTitle18.generateFontSize())
             
             self.senderOuterView.setBorder(radius: self.senderOuterView.frame.size.height / 2, color: .appColor, width: 0.8)
+            
+            self.messageTextField.delegate = self
         }
         
-        MessageManager.shared.fetchConversations(completion: {_,_ in
-            
+       
+        MessageManager.shared.observeMessages(completion: {[weak self] userMessageData in
+            self?.conversationData.append(userMessageData)
+           
+            DispatchQueue.main.async {
+                print(self?.conversationData.count)
+                self?.conversationTableView.reloadData()
+            }
         })
     }
     
@@ -121,7 +123,7 @@ class ConversationViewController : UIViewController {
     //  MARK:  OnClick Send Button Action
     @IBAction func onClickSendAction(_ sender: Any) {
         let senderId = FirebaseAuth.Auth.auth().currentUser?.uid
-        
+
         MessageManager.shared.sendMessage(message: ChatMessage(senderId: senderId ?? "", receiverId: receiverId, text: self.messageTextField.text ?? "" , timestamp: Date().timeIntervalSinceNow))
     }
     
@@ -133,18 +135,30 @@ extension ConversationViewController : UITableViewDelegate, UITableViewDataSourc
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.chatMessages.count
+        return self.conversationData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellIdentifier = (chatMessages[indexPath.row].senderId == "senderUserId") ? SenderUserCell.className : ReceiverUserCell.className
-        let tableCell = (chatMessages[indexPath.row].senderId == "senderUserId") ? tableView.dequeueReusableCell(withIdentifier: SenderUserCell.className, for: indexPath) as! SenderUserCell :  tableView.dequeueReusableCell(withIdentifier: ReceiverUserCell.className, for: indexPath) as! ReceiverUserCell
-        
-        return tableCell
+        if  FirebaseAuth.Auth.auth().currentUser?.uid == conversationData[indexPath.row].senderId {
+            let cell = tableView.dequeueReusableCell(withIdentifier: SenderUserCell.className, for: indexPath) as! SenderUserCell
+            cell.configureSenderCell(message: self.conversationData[indexPath.row])
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: ReceiverUserCell.className, for: indexPath) as! ReceiverUserCell
+            cell.configureReceiverCell(message: self.conversationData[indexPath.row])
+            return cell
+        }
+
+        return UITableViewCell()
     }
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
+}
+
+
+extension ConversationViewController:UITextViewDelegate {
+    
 }

@@ -42,6 +42,7 @@ extension UIColor {
     static let deepSky = UIColor(hexString: "#6e67ff")
     static let darkGreen = UIColor(hexString: "#95fbff")
     static let lightLevendarBlue = UIColor(hexString: "#E6E6FA")
+    static let lightPurpleColor = UIColor(hexString: "#CCCCFF")
     
 }
 

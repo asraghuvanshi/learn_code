@@ -32,23 +32,19 @@ class SenderUserCell: UITableViewCell {
     
     
     //  MARK:  Configure Sender Cell
-    func configureSenderCell(message: String) {
+    func configureSenderCell(message: MessageModel) {
         let storageRef = Storage.storage().reference()
         let imageRef = storageRef.child("profile_images")
-        
-        imageRef.downloadURL(completion: { url , error in
-            print(url)
-        })
-//        self.imgSenderProfile.image = UIImage(named: "image1")
+    
         self.imgSenderProfile.contentMode = .scaleAspectFill
         self.imgSenderProfile.setBorder(radius: self.imgSenderProfile.frame.size.height / 2, color: .appColor , width: 1.5)
-        self.lblTextMessage.text = message
-        self.lblTextMessage.numberOfLines = .zero
-        self.lblTextMessage.lineBreakMode = .byWordWrapping
-        self.lblTextMessage.textColor = .whiteColor
+       
+        self.lblTextMessage.configureLabelAndAlignment(text: message.textMessage, color: .blackColor, fontStyle: .semibold, fontSize: FontSize.title16.generateFontSize())
 
-        self.messageView.backgroundColor = .appColor
-        self.messageView.setBorder(radius: 10, color: .whiteColor , width: 1.5)
+        self.lblTimeStamp.configureLabel(text: convertTimestampToTime(timestamp: message.timestamp), color: .appColor, fontStyle: .semibold, fontSize: FontSize.title12.generateFontSize())
+        
+        self.messageView.backgroundColor = .lightPurpleColor
+        self.messageView.setBorder(radius: 15, color: .appColor , width: 0.5)
 
     }
     

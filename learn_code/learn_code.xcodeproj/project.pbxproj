@@ -25,7 +25,6 @@
 		9D5A30D62B3032E00035B108 /* LeaderboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5A30D52B3032E00035B108 /* LeaderboardViewController.swift */; };
 		9D5A30D82B3033010035B108 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5A30D72B3033010035B108 /* PostViewController.swift */; };
 		9D5A30DA2B3054FD0035B108 /* Handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5A30D92B3054FD0035B108 /* Handler.swift */; };
-		9D5EC0402B4EA00800E01364 /* ChatMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5EC03F2B4EA00800E01364 /* ChatMessageModel.swift */; };
 		9D605A362B17B8C600214D2B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D605A352B17B8C600214D2B /* AppDelegate.swift */; };
 		9D605A382B17B8C600214D2B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D605A372B17B8C600214D2B /* SceneDelegate.swift */; };
 		9D605A3F2B17B8C800214D2B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D605A3E2B17B8C800214D2B /* Assets.xcassets */; };
@@ -36,7 +35,6 @@
 		9D605A692B17B99A00214D2B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D605A682B17B99A00214D2B /* Main.storyboard */; };
 		9D605A6D2B17C27800214D2B /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D605A6C2B17C27800214D2B /* Constant.swift */; };
 		9D605A6F2B17C2EC00214D2B /* CommonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D605A6E2B17C2EC00214D2B /* CommonExtension.swift */; };
-		9D643D0D2B4C2719002A45C3 /* ConversationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D643D0C2B4C2719002A45C3 /* ConversationModel.swift */; };
 		9D704E2B6707A604CCB3E752 /* Pods_learn_code_learn_codeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B30E6A7080B4825D4C902699 /* Pods_learn_code_learn_codeUITests.framework */; };
 		9D853EDE2B18FB640053153E /* OpenSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9D853ED32B18FB630053153E /* OpenSans-LightItalic.ttf */; };
 		9D853EDF2B18FB640053153E /* OpenSans-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9D853ED42B18FB630053153E /* OpenSans-ExtraBoldItalic.ttf */; };
@@ -129,7 +127,6 @@
 		9D5A30D52B3032E00035B108 /* LeaderboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardViewController.swift; sourceTree = "<group>"; };
 		9D5A30D72B3033010035B108 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		9D5A30D92B3054FD0035B108 /* Handler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Handler.swift; sourceTree = "<group>"; };
-		9D5EC03F2B4EA00800E01364 /* ChatMessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageModel.swift; sourceTree = "<group>"; };
 		9D605A322B17B8C600214D2B /* learn_code.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = learn_code.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D605A352B17B8C600214D2B /* AppDelegate.swift */ = {isa = PBXFileReference; indentWidth = 3; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9D605A372B17B8C600214D2B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -144,7 +141,6 @@
 		9D605A682B17B99A00214D2B /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		9D605A6C2B17C27800214D2B /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		9D605A6E2B17C2EC00214D2B /* CommonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonExtension.swift; sourceTree = "<group>"; };
-		9D643D0C2B4C2719002A45C3 /* ConversationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationModel.swift; sourceTree = "<group>"; };
 		9D853ED32B18FB630053153E /* OpenSans-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-LightItalic.ttf"; sourceTree = "<group>"; };
 		9D853ED42B18FB630053153E /* OpenSans-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
 		9D853ED52B18FB630053153E /* OpenSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-BoldItalic.ttf"; sourceTree = "<group>"; };
@@ -267,8 +263,6 @@
 			isa = PBXGroup;
 			children = (
 				9D54285D2B3DF81000DEDCE4 /* UserModel.swift */,
-				9D643D0C2B4C2719002A45C3 /* ConversationModel.swift */,
-				9D5EC03F2B4EA00800E01364 /* ChatMessageModel.swift */,
 			);
 			path = UserModel;
 			sourceTree = "<group>";
@@ -808,10 +802,8 @@
 				9D303E8E2B31589900BB75A6 /* NotificationViewController.swift in Sources */,
 				9D25C6542B317B1E00D51D07 /* ChatViewController.swift in Sources */,
 				9D853EEC2B1907660053153E /* Validations.swift in Sources */,
-				9D5EC0402B4EA00800E01364 /* ChatMessageModel.swift in Sources */,
 				9D8B7FDA2B34442C003D39BB /* ChatHistoryCell.swift in Sources */,
 				9D54285E2B3DF81000DEDCE4 /* UserModel.swift in Sources */,
-				9D643D0D2B4C2719002A45C3 /* ConversationModel.swift in Sources */,
 				9D5A30D42B3032A60035B108 /* ProfileViewController.swift in Sources */,
 				9D605A6D2B17C27800214D2B /* Constant.swift in Sources */,
 				9D8B7FDE2B34462B003D39BB /* ActiveUserCell.swift in Sources */,

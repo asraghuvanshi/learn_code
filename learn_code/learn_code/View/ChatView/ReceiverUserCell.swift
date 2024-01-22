@@ -35,21 +35,18 @@ class ReceiverUserCell: UITableViewCell {
     
     
     //   MARK:  Configure Receiver Cell
-    func configureReceiverCell(message: String) {
+    func configureReceiverCell(message: MessageModel) {
         
         self.imgReceiverProfile.image = UIImage(named: "image2")
         self.imgReceiverProfile.contentMode = .scaleAspectFill
         self.imgReceiverProfile.setBorder(radius: self.imgReceiverProfile.frame.size.height / 2, color: .appColor , width: 1.5)
 
-        self.lblTextMessage.text = message
-        self.lblTextMessage.numberOfLines = .zero
-        self.lblTextMessage.lineBreakMode = .byWordWrapping
-        self.lblTextMessage.textColor = .white
+        self.lblTextMessage.configureLabelAndAlignment(text: message.textMessage, color: .blackColor, fontStyle: .semibold, fontSize: FontSize.title16.generateFontSize())
+
+        self.lblTimeStamp.configureLabel(text: convertTimestampToTime(timestamp: message.timestamp), color: .appColor, fontStyle: .semibold, fontSize: FontSize.title12.generateFontSize())
         
-        self.lblTimeStamp.text = formatter.string(from: Date())
-        
-        self.messageView.backgroundColor = .appColor
-        self.messageView.setBorder(radius: 10, color: .whiteColor , width: 1.5)
+        self.messageView.backgroundColor = .lightPurpleColor
+        self.messageView.setBorder(radius: 15, color: .appColor , width: 0.5)
 
         
     }

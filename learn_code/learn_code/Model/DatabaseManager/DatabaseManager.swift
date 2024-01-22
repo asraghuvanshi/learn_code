@@ -11,15 +11,6 @@ import FirebaseAuth
 import FirebaseDatabase
 import FirebaseStorage
 
-//  MARK:  ChatMessage Struct
-public struct Message {
-    var sender: String
-    var timeStamp: Date
-    var messageContent: String
-    var messageId: String
-}
-
-
 class DatabaseManager {
     
     static let shared = DatabaseManager()
@@ -88,7 +79,7 @@ class DatabaseManager {
     
     
     // MARK: - Helper functions
-    
+    //  MARK:  Upload Profile Image
     private func uploadProfileImage(_ image: UIImage, completion: @escaping (String?, Error?) -> Void) {
         let storageRef = Storage.storage().reference()
         let imageRef = storageRef.child("profile_images").child(UUID().uuidString + ".jpg")
@@ -116,6 +107,7 @@ class DatabaseManager {
         }
     }
     
+    //  MARK:  Update User in Database
     private func updateUserInDatabase(_ userId: String, userName: String, userEmail: String, mobileNo: String, imageUrl: String?, completion: @escaping (Error?) -> Void) {
         let userReference = reference.child("users").child(userId)
         var values: [String: Any] = [
@@ -140,6 +132,7 @@ class DatabaseManager {
         }
     }
     
+    //  MARK:  Fetch Current User
     func fetchCurrentUser(userId: String, completion: @escaping (String, Error?) -> Void) {
         let userReference = reference.child("users").child(userId)
         
@@ -155,9 +148,8 @@ class DatabaseManager {
     }
 }
 
-//  MARK:  Sending And Fetching Messages/Conversation
 
-
+//  MARK:  Struct For Chat Message Structure
 struct ChatMessage {
     let senderId: String
     let receiverId: String
@@ -167,28 +159,63 @@ struct ChatMessage {
 
 
 class MessageManager {
-    static let shared = MessageManager()
     
+    static let shared = MessageManager()
     private let database = Database.database().reference()
     
+    
+    ///    Send Message Method
     func sendMessage(message: ChatMessage) {
-        let messagesRef = database.child("messages").childByAutoId()
-        let messageData: [String: Any] = [
-            "senderId": message.senderId,
-            "receiverId": message.receiverId,
-            "text": message.text,
-            "timestamp": ServerValue.timestamp()
-        ]
-        messagesRef.setValue(messageData)
+        let msgDB = Database.database().reference().child("messages")
+        
+        let msgDict = ["id": "",
+                       
+                       "receiver_id": message.receiverId,
+                       "sender_id": message.senderId,
+                       "text": message.text,
+                       "time_stamp": ServerValue.timestamp(),
+                       "latest_message": ["text": message.text,
+                                          "is_read": false,
+                                          "time_stamp": ServerValue.timestamp()]]as [String : Any]
+        
+        msgDB.childByAutoId().setValue(msgDict){(error,ref) in
+            if(error != nil){
+                debugPrint(error)
+            }else{
+                debugPrint("Msg saved successfully")
+            }
+        }
     }
     
     
-    func fetchConversations(completion: @escaping ([(userId: String, userResponse: ChatMessageModel)], Error?) -> Void) {
-        Database.database().reference().child("messages").observe(.childAdded, with: { snapshot in
-            guard let userDict = snapshot.value as? [String: Any] else { return }
-            
-            print(userDict, "snap value")
-            
-        })
+    //  MARK:  Observe messages from the firebase
+    
+    func observeMessages(completion: @escaping (MessageModel) -> Void) {
+        let msgDB = Database.database().reference().child("messages")
+        msgDB.observe(.childAdded) { (snapShot)  in
+            if let value = snapShot.value as? [String: Any],
+               let id = value["id"] as? String,
+               let latestMessage = value["latest_message"] as? [String: Any],
+               let isRead = latestMessage["is_read"] as? Bool,
+               let textMessage = latestMessage["text"] as? String,
+               let receiverId = value["receiver_id"] as? String,
+               let senderId = value["sender_id"] as? String,
+               let timeStamp = value["time_stamp"] as? TimeInterval{
+                let message = MessageModel(id: id, isRead: isRead, textMessage: textMessage, senderId: senderId, receiverId: receiverId, timestamp: timeStamp)
+                print(value)
+                completion(message)
+            }
+        }
     }
+}
+
+
+//  MARK:  Chat Message Model
+struct MessageModel {
+    let id: String
+    let isRead: Bool
+    let textMessage: String
+    let senderId: String
+    let receiverId: String
+    let timestamp: TimeInterval
 }

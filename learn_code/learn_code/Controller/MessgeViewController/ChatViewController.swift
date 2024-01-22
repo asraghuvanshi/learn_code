@@ -26,7 +26,7 @@ class ChatViewController : UIViewController {
     var profileData = ["image1","image2","image3","image4","image5","image6"]
     var userName = ["Christlle Jolly", "Michelle", "Christal", "Shailly", "Mercy", "Rubina Fleam"]
     
-    var conversationData: [ConversationModel] = []
+//    var conversationData: [ConversationModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -111,9 +111,9 @@ extension ChatViewController : UITableViewDelegate & UITableViewDataSource {
             let userListCell = tableView.dequeueReusableCell(withIdentifier: ChatUserListCell.className, for: indexPath) as! ChatUserListCell
             if let unwrappedData = self.userListData {
                 userListCell.configureUserList(userData: unwrappedData[indexPath.row].userResponse)
-                if self.conversationData.count != 0 && indexPath.row < conversationData.count{
-                    userListCell.userMessageData = conversationData[indexPath.row]
-                }
+//                if self.conversationData.count != 0 && indexPath.row < conversationData.count{
+////                    userListCell.userMessageData = conversationData[indexPath.row]
+//                }
             }
             return userListCell
         }

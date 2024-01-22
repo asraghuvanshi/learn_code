@@ -113,3 +113,14 @@ extension UIView{
     }
 }
 
+func convertTimestampToTime(timestamp: TimeInterval) -> String {
+    let date = Date(timeIntervalSince1970: timestamp)
+    
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "h:mm a"
+    
+    let formattedTime = dateFormatter.string(from: date)
+    
+    return formattedTime
+}
+

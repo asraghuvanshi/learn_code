@@ -803,7 +803,7 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J1n-9I-TWp">
-                                        <rect key="frame" x="323" y="9" width="40" height="40"/>
+                                        <rect key="frame" x="323" y="12" width="40" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="IBe-W7-Qnt"/>
                                             <constraint firstAttribute="height" constant="40" id="dD1-GA-JGe"/>
@@ -818,11 +818,11 @@
                                 <constraints>
                                     <constraint firstItem="hSj-Sa-qEZ" firstAttribute="leading" secondItem="f9E-vV-Ta0" secondAttribute="leading" constant="20" id="27Y-ai-ahm"/>
                                     <constraint firstItem="J1n-9I-TWp" firstAttribute="leading" secondItem="hSj-Sa-qEZ" secondAttribute="trailing" constant="10" id="Hdk-B3-9yB"/>
+                                    <constraint firstItem="J1n-9I-TWp" firstAttribute="centerY" secondItem="bd9-Uu-Jj0" secondAttribute="centerY" id="KWY-1D-mye"/>
                                     <constraint firstAttribute="trailing" secondItem="J1n-9I-TWp" secondAttribute="trailing" constant="10" id="WVU-nG-zXP"/>
                                     <constraint firstAttribute="bottom" secondItem="hSj-Sa-qEZ" secondAttribute="bottom" constant="10" id="bEx-eH-It5"/>
                                     <constraint firstItem="hSj-Sa-qEZ" firstAttribute="top" secondItem="f9E-vV-Ta0" secondAttribute="top" constant="10" id="lBz-Ra-nbl"/>
                                     <constraint firstAttribute="trailing" secondItem="J1n-9I-TWp" secondAttribute="trailing" constant="10" id="opF-IL-mjg"/>
-                                    <constraint firstAttribute="bottom" secondItem="J1n-9I-TWp" secondAttribute="bottom" constant="15" id="rmq-Cv-ba9"/>
                                 </constraints>
                             </view>
                         </subviews>
