@@ -39,7 +39,7 @@ class SenderUserCell: UITableViewCell {
         self.imgSenderProfile.contentMode = .scaleAspectFill
         self.imgSenderProfile.setBorder(radius: self.imgSenderProfile.frame.size.height / 2, color: .appColor , width: 1.5)
        
-        self.lblTextMessage.configureLabelAndAlignment(text: message.textMessage, color: .blackColor, fontStyle: .semibold, fontSize: FontSize.title16.generateFontSize())
+        self.lblTextMessage.configureLabelAndAlignment(text: message.content, color: .blackColor, fontStyle: .semibold, fontSize: FontSize.title16.generateFontSize())
 
         self.lblTimeStamp.configureLabel(text: convertTimestampToTime(timestamp: message.timestamp), color: .appColor, fontStyle: .semibold, fontSize: FontSize.title12.generateFontSize())
         

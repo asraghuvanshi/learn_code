@@ -39,7 +39,7 @@ class HomeViewController : UIViewController {
     
     //  MARK:  OnClick Chat Button Action
     @IBAction func onClickChatAction(_ sender: Any) {
-        let tabVC =  AppStoryboard.Main.instance.instantiateViewController(withIdentifier: ChatViewController.className) as! ChatViewController
+        let tabVC =  AppStoryboard.Main.instance.instantiateViewController(withIdentifier: ChatListViewController.className) as! ChatListViewController
         self.navigationController?.pushViewController(tabVC, animated: true)
     }
     

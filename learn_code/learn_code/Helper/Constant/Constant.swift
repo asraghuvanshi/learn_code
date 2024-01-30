@@ -61,6 +61,7 @@ public struct FontSize{
     static let buttonFont20 = 20
     static let buttonFont22 = 22
     static let buttonFont24 = 24
+    
 }
 
 
@@ -77,13 +78,13 @@ public enum UIName {
     static let createAccount = "Create an account ?"
     static let otpVerification = "OTP Verification"
     static let otpSentMessage = "OTP has been sent to you register mobile number and email"
-
     
 }
 
 public enum UINavigationTile {
     static let chatHistory = "Chat History"
     static let chats = "Chats"
+    
 }
 
 public enum UIPlaceholder {
@@ -99,7 +100,6 @@ public enum UIButtonTitle {
     static let genderMale = "Male"
     static let genderFemale = "Female"
     
-    
 }
 
 public enum ImageCollection {
@@ -111,6 +111,5 @@ public enum ImageCollection {
     static let radioUnfill = "radioUnfill"
     static let backImage = "back_ic"
     static let chatIcon = "chat_ic"
-
-
+    
 }

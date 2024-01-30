@@ -10,7 +10,7 @@
 		9D0CFF282B2E1F7800D07AA8 /* VerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0CFF272B2E1F7800D07AA8 /* VerificationViewController.swift */; };
 		9D15821C2B55588500A7813B /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D15821B2B55588500A7813B /* NotificationService.swift */; };
 		9D1582252B5561AA00A7813B /* NotificationService.appex in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9D1582192B55588500A7813B /* NotificationService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		9D25C6542B317B1E00D51D07 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D25C6532B317B1E00D51D07 /* ChatViewController.swift */; };
+		9D25C6542B317B1E00D51D07 /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D25C6532B317B1E00D51D07 /* ChatListViewController.swift */; };
 		9D2981D42B1C4E3600152E8A /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2981D32B1C4E3600152E8A /* RegisterViewController.swift */; };
 		9D303E8E2B31589900BB75A6 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D303E8D2B31589900BB75A6 /* NotificationViewController.swift */; };
 		9D3502D52B3560AD007D1D6D /* ChatUserListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3502D32B3560AD007D1D6D /* ChatUserListCell.swift */; };
@@ -55,8 +55,10 @@
 		9D9262C72B3BE6360053A018 /* SenderUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D9262C52B3BE6360053A018 /* SenderUserCell.xib */; };
 		9D9262CA2B3BE6530053A018 /* ReceiverUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9262C82B3BE6530053A018 /* ReceiverUserCell.swift */; };
 		9D9262CB2B3BE6530053A018 /* ReceiverUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D9262C92B3BE6530053A018 /* ReceiverUserCell.xib */; };
+		9DA3853D2B67CBFC00602B62 /* LastMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA3853C2B67CBFC00602B62 /* LastMessageModel.swift */; };
 		9DCFFBCA2B46CD7A00250472 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9DCFFBC92B46CD7A00250472 /* GoogleService-Info.plist */; };
 		9DD6F2642B3AB72000C92710 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD6F2632B3AB72000C92710 /* ConversationViewController.swift */; };
+		9DD821A62B5FEE2D00B816BF /* iphone_ding.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9DD821A52B5FEE2D00B816BF /* iphone_ding.mp3 */; };
 		9DDCB3432B1B72AE00AEAC49 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDCB3422B1B72AE00AEAC49 /* Color.swift */; };
 		9DDCB3452B1B962600AEAC49 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDCB3442B1B962600AEAC49 /* IntroViewController.swift */; };
 		9DDCB3482B1B9B4300AEAC49 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDCB3472B1B9B4300AEAC49 /* LoginViewController.swift */; };
@@ -108,11 +110,12 @@
 		59C9F99157D1170925BAA7F6 /* Pods_learn_code.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_learn_code.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D14652405250205DE344E92 /* Pods-learn_codeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-learn_codeTests.release.xcconfig"; path = "Target Support Files/Pods-learn_codeTests/Pods-learn_codeTests.release.xcconfig"; sourceTree = "<group>"; };
 		8374E5B89920CB26544ABE53 /* Pods-learn_code-learn_codeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-learn_code-learn_codeUITests.debug.xcconfig"; path = "Target Support Files/Pods-learn_code-learn_codeUITests/Pods-learn_code-learn_codeUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		9D0ADC5E2B60D87A00103E59 /* learn_code.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = learn_code.entitlements; sourceTree = "<group>"; };
 		9D0CFF272B2E1F7800D07AA8 /* VerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationViewController.swift; sourceTree = "<group>"; };
 		9D1582192B55588500A7813B /* NotificationService.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationService.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D15821B2B55588500A7813B /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		9D15821D2B55588500A7813B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9D25C6532B317B1E00D51D07 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		9D25C6532B317B1E00D51D07 /* ChatListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
 		9D2981D32B1C4E3600152E8A /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		9D303E8D2B31589900BB75A6 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		9D3502D32B3560AD007D1D6D /* ChatUserListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatUserListCell.swift; sourceTree = "<group>"; };
@@ -160,9 +163,11 @@
 		9D9262C52B3BE6360053A018 /* SenderUserCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SenderUserCell.xib; sourceTree = "<group>"; };
 		9D9262C82B3BE6530053A018 /* ReceiverUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiverUserCell.swift; sourceTree = "<group>"; };
 		9D9262C92B3BE6530053A018 /* ReceiverUserCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReceiverUserCell.xib; sourceTree = "<group>"; };
+		9DA3853C2B67CBFC00602B62 /* LastMessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastMessageModel.swift; sourceTree = "<group>"; };
 		9DCFFBC42B46986D00250472 /* learn_codeDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = learn_codeDebug.entitlements; sourceTree = "<group>"; };
 		9DCFFBC92B46CD7A00250472 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9DD6F2632B3AB72000C92710 /* ConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
+		9DD821A52B5FEE2D00B816BF /* iphone_ding.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = iphone_ding.mp3; sourceTree = "<group>"; };
 		9DDCB3422B1B72AE00AEAC49 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		9DDCB3442B1B962600AEAC49 /* IntroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
 		9DDCB3472B1B9B4300AEAC49 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -246,7 +251,7 @@
 			isa = PBXGroup;
 			children = (
 				9D54285C2B3DF7F800DEDCE4 /* UserModel */,
-				9D3502DA2B3592B4007D1D6D /* DatabaseManager */,
+				9DA3853E2B67CC0400602B62 /* MessageModel */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -327,6 +332,7 @@
 		9D605A342B17B8C600214D2B /* learn_code */ = {
 			isa = PBXGroup;
 			children = (
+				9D0ADC5E2B60D87A00103E59 /* learn_code.entitlements */,
 				9DCFFBC42B46986D00250472 /* learn_codeDebug.entitlements */,
 				9D605A662B17B95800214D2B /* Controller */,
 				9D605A672B17B96800214D2B /* View */,
@@ -334,6 +340,7 @@
 				9D853ED12B18FB220053153E /* Helper */,
 				9DDCB3462B1B9B1C00AEAC49 /* AppConfiguration */,
 				9D605A3E2B17B8C800214D2B /* Assets.xcassets */,
+				9DD821A42B5FEE1500B816BF /* AudioTune */,
 				9D605A402B17B8C800214D2B /* LaunchScreen.storyboard */,
 				9DCFFBC92B46CD7A00250472 /* GoogleService-Info.plist */,
 				9D605A432B17B8C800214D2B /* Info.plist */,
@@ -401,6 +408,7 @@
 				9D605A6A2B17BA2D00214D2B /* Constant */,
 				9D853ED22B18FB450053153E /* fonts */,
 				9D605A6B2B17BA3900214D2B /* Extension */,
+				9D3502DA2B3592B4007D1D6D /* DatabaseManager */,
 				9D853EEB2B1907660053153E /* Validations.swift */,
 				9DDCB3422B1B72AE00AEAC49 /* Color.swift */,
 				9D3502D72B35743B007D1D6D /* Helper.swift */,
@@ -438,6 +446,14 @@
 			path = MessageView;
 			sourceTree = "<group>";
 		};
+		9DA3853E2B67CC0400602B62 /* MessageModel */ = {
+			isa = PBXGroup;
+			children = (
+				9DA3853C2B67CBFC00602B62 /* LastMessageModel.swift */,
+			);
+			path = MessageModel;
+			sourceTree = "<group>";
+		};
 		9DD6F2652B3AB78300C92710 /* ChatView */ = {
 			isa = PBXGroup;
 			children = (
@@ -447,6 +463,14 @@
 				9D9262C92B3BE6530053A018 /* ReceiverUserCell.xib */,
 			);
 			path = ChatView;
+			sourceTree = "<group>";
+		};
+		9DD821A42B5FEE1500B816BF /* AudioTune */ = {
+			isa = PBXGroup;
+			children = (
+				9DD821A52B5FEE2D00B816BF /* iphone_ding.mp3 */,
+			);
+			path = AudioTune;
 			sourceTree = "<group>";
 		};
 		9DDCB3462B1B9B1C00AEAC49 /* AppConfiguration */ = {
@@ -461,7 +485,7 @@
 		9DEBD7E32B30762700ABC2EC /* MessgeViewController */ = {
 			isa = PBXGroup;
 			children = (
-				9D25C6532B317B1E00D51D07 /* ChatViewController.swift */,
+				9D25C6532B317B1E00D51D07 /* ChatListViewController.swift */,
 				9DD6F2632B3AB72000C92710 /* ConversationViewController.swift */,
 			);
 			path = MessgeViewController;
@@ -610,6 +634,7 @@
 				9D9262C72B3BE6360053A018 /* SenderUserCell.xib in Resources */,
 				9D853EE02B18FB640053153E /* OpenSans-BoldItalic.ttf in Resources */,
 				9D853EE52B18FB640053153E /* OpenSans-Semibold.ttf in Resources */,
+				9DD821A62B5FEE2D00B816BF /* iphone_ding.mp3 in Resources */,
 				9D605A692B17B99A00214D2B /* Main.storyboard in Resources */,
 				9D853EE22B18FB640053153E /* OpenSans-Bold.ttf in Resources */,
 				9D9262CB2B3BE6530053A018 /* ReceiverUserCell.xib in Resources */,
@@ -800,11 +825,12 @@
 				9D3502D82B35743B007D1D6D /* Helper.swift in Sources */,
 				9D5A30CD2B30290F0035B108 /* MainTabController.swift in Sources */,
 				9D303E8E2B31589900BB75A6 /* NotificationViewController.swift in Sources */,
-				9D25C6542B317B1E00D51D07 /* ChatViewController.swift in Sources */,
+				9D25C6542B317B1E00D51D07 /* ChatListViewController.swift in Sources */,
 				9D853EEC2B1907660053153E /* Validations.swift in Sources */,
 				9D8B7FDA2B34442C003D39BB /* ChatHistoryCell.swift in Sources */,
 				9D54285E2B3DF81000DEDCE4 /* UserModel.swift in Sources */,
 				9D5A30D42B3032A60035B108 /* ProfileViewController.swift in Sources */,
+				9DA3853D2B67CBFC00602B62 /* LastMessageModel.swift in Sources */,
 				9D605A6D2B17C27800214D2B /* Constant.swift in Sources */,
 				9D8B7FDE2B34462B003D39BB /* ActiveUserCell.swift in Sources */,
 				9D3502D52B3560AD007D1D6D /* ChatUserListCell.swift in Sources */,
@@ -1035,6 +1061,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
 				CODE_SIGN_ENTITLEMENTS = learn_code/learn_codeDebug.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1064,6 +1091,8 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
+				CODE_SIGN_ENTITLEMENTS = learn_code/learn_code.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = PGD32YP8G8;

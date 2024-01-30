@@ -9,7 +9,7 @@ import UIKit
 import FirebaseCore
 import FirebaseDatabase
 import FirebaseAuth
-
+import AVFoundation
 
 class ConversationViewController : UIViewController {
     
@@ -32,13 +32,17 @@ class ConversationViewController : UIViewController {
     
     
     //  MARK:  Private and Public Variables
+    private var audioPlayer: AVAudioPlayer?
+
     var conversationData: [MessageModel] = []
     var userData: UserResponse?
-
+    
     var isNewConversation: Bool = true
     var userEmail: String = ""
     var receiverId: String = ""
+    var senderId: String = ""
     var profileUrl: String = ""
+    var isUserTyping: Bool = false
     
     private var dateFormatter : DateFormatter = {
         let formatter = DateFormatter()
@@ -86,17 +90,16 @@ class ConversationViewController : UIViewController {
             self.senderOuterView.setBorder(radius: self.senderOuterView.frame.size.height / 2, color: .appColor, width: 0.8)
             
             self.messageTextField.delegate = self
+            
         }
-        
-       
-        MessageManager.shared.observeMessages(completion: {[weak self] userMessageData in
-            self?.conversationData.append(userMessageData)
-           
-            DispatchQueue.main.async {
-                print(self?.conversationData.count)
-                self?.conversationTableView.reloadData()
+     
+        MessageManager.shared.observeConversations(receiverId: self.receiverId ,completion: { conversations in
+            self.conversationData.removeAll()
+            DispatchQueue.main.async {[weak self] in
+                self?.getAllConversations()
             }
         })
+
     }
     
     //   MARK:  Assign UITableCell Delegate
@@ -112,6 +115,30 @@ class ConversationViewController : UIViewController {
         self.conversationTableView.rowHeight = UITableView.automaticDimension
     }
     
+    func getAllConversations() {
+        ///  Get all Conversations
+        MessageManager.shared.getAllConversations(receiverId: self.receiverId ,completion: { conversations in
+            self.conversationData.append(contentsOf: conversations)
+            DispatchQueue.main.async {[weak self] in
+                self?.conversationTableView.reloadData()
+            }
+        })
+    }
+    
+    //  MARK:  Handle Send Messages
+    func handleSendMessage() {
+        guard let currentSenderId = FirebaseAuth.Auth.auth().currentUser?.uid else { return }
+        MessageManager.shared.sendMessagesToUser(message: MessageModel(senderId: currentSenderId, receiverId: receiverId, content: self.messageTextField.text ?? "", timestamp: Date().timeIntervalSince1970), completion: { error in
+            
+            self.messageTextField.text = ""
+            
+            if error == nil {
+                print("Message has been sent to the user")
+            } else {
+                print("Error while sending messages")
+            }
+        })
+    }
     
     //  MARK:  OnClick Back Button Action
     @IBAction func onClickBackAction(_ sender: Any) {
@@ -121,36 +148,37 @@ class ConversationViewController : UIViewController {
     }
     
     //  MARK:  OnClick Send Button Action
-    @IBAction func onClickSendAction(_ sender: Any) {
-        let senderId = FirebaseAuth.Auth.auth().currentUser?.uid
-
-        MessageManager.shared.sendMessage(message: ChatMessage(senderId: senderId ?? "", receiverId: receiverId, text: self.messageTextField.text ?? "" , timestamp: Date().timeIntervalSinceNow))
+    @IBAction func onClickSendAction(_ sender: UIButton) {
+        self.handleSendMessage()
     }
-    
 }
 
 
 //  MARK:  TableView Delegates and DataSource Methods
 extension ConversationViewController : UITableViewDelegate, UITableViewDataSource {
     
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.conversationData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if  FirebaseAuth.Auth.auth().currentUser?.uid == conversationData[indexPath.row].senderId {
-            let cell = tableView.dequeueReusableCell(withIdentifier: SenderUserCell.className, for: indexPath) as! SenderUserCell
-            cell.configureSenderCell(message: self.conversationData[indexPath.row])
-            return cell
-        } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: ReceiverUserCell.className, for: indexPath) as! ReceiverUserCell
-            cell.configureReceiverCell(message: self.conversationData[indexPath.row])
-            return cell
+        let messageData = self.conversationData[indexPath.row]
+
+        guard let currentUserID = FirebaseAuth.Auth.auth().currentUser?.uid else {
+            return UITableViewCell()
         }
 
-        return UITableViewCell()
+        if currentUserID == messageData.senderId {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SenderUserCell", for: indexPath) as! SenderUserCell
+            cell.configureSenderCell(message: messageData)
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ReceiverUserCell", for: indexPath) as! ReceiverUserCell
+            cell.configureReceiverCell(message: messageData)
+            return cell
+        }
     }
+
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -158,7 +186,43 @@ extension ConversationViewController : UITableViewDelegate, UITableViewDataSourc
     }
 }
 
+extension ConversationViewController: AVAudioPlayerDelegate {
+    func observeTyping() {
+        guard let url = Bundle.main.url(forResource: "iphone_ding", withExtension: "mp3") else { return }
+        
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+            try AVAudioSession.sharedInstance().setActive(true)
+            
+            audioPlayer = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
+            
+            guard let player = audioPlayer else { return }
+            
+            audioPlayer?.play()
+            
+        } catch let error {
+            print(error.localizedDescription)
+        }
+    }
+}
 
-extension ConversationViewController:UITextViewDelegate {
+
+//   MARK:  TextView Delegate Methods
+extension ConversationViewController: UITextViewDelegate {
     
+    func textViewDidChange(_ textView: UITextView) {
+        guard let userId = userData?.userId else { return }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        guard let userId = userData?.userId else { return }
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n" {
+            handleSendMessage()
+            return false
+        }
+        return true
+    }
 }

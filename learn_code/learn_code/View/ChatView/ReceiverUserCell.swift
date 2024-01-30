@@ -36,12 +36,12 @@ class ReceiverUserCell: UITableViewCell {
     
     //   MARK:  Configure Receiver Cell
     func configureReceiverCell(message: MessageModel) {
-        
+
         self.imgReceiverProfile.image = UIImage(named: "image2")
         self.imgReceiverProfile.contentMode = .scaleAspectFill
         self.imgReceiverProfile.setBorder(radius: self.imgReceiverProfile.frame.size.height / 2, color: .appColor , width: 1.5)
 
-        self.lblTextMessage.configureLabelAndAlignment(text: message.textMessage, color: .blackColor, fontStyle: .semibold, fontSize: FontSize.title16.generateFontSize())
+        self.lblTextMessage.configureLabelAndAlignment(text: message.content, color: .blackColor, fontStyle: .semibold, fontSize: FontSize.title16.generateFontSize())
 
         self.lblTimeStamp.configureLabel(text: convertTimestampToTime(timestamp: message.timestamp), color: .appColor, fontStyle: .semibold, fontSize: FontSize.title12.generateFontSize())
         
