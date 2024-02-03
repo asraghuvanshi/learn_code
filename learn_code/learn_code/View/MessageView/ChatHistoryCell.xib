@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,18 +11,25 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChatHistoryCell" rowHeight="163" id="KGk-i7-Jjw" customClass="ChatHistoryCell" customModule="learn_code" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ChatHistoryCell" rowHeight="163" id="KGk-i7-Jjw" customClass="ChatHistoryCell" customModule="learn_code" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="418" height="163"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="418" height="163"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yra-c3-SCK">
+                        <rect key="frame" x="10" y="10" width="398" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="DM2-DD-yCx">
-                        <rect key="frame" x="10" y="10" width="398" height="143"/>
+                        <rect key="frame" x="10" y="36" width="398" height="117"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="lyd-it-SZo">
                             <size key="itemSize" width="128" height="128"/>
+                            <size key="estimatedItemSize" width="128" height="128"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -31,14 +38,18 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="DM2-DD-yCx" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="3JS-hn-TJq"/>
+                    <constraint firstItem="yra-c3-SCK" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="NCA-D4-QKJ"/>
+                    <constraint firstItem="DM2-DD-yCx" firstAttribute="top" secondItem="yra-c3-SCK" secondAttribute="bottom" constant="5" id="QxJ-vC-ZZp"/>
                     <constraint firstAttribute="trailing" secondItem="DM2-DD-yCx" secondAttribute="trailing" constant="10" id="Sub-do-3R8"/>
-                    <constraint firstItem="DM2-DD-yCx" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="c3r-pr-LE7"/>
+                    <constraint firstAttribute="trailing" secondItem="yra-c3-SCK" secondAttribute="trailing" constant="10" id="fzE-Hg-1Ns"/>
+                    <constraint firstItem="yra-c3-SCK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="pI7-af-dTy"/>
                     <constraint firstAttribute="bottom" secondItem="DM2-DD-yCx" secondAttribute="bottom" constant="10" id="w88-j4-Rm2"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="activeUserCollectionView" destination="DM2-DD-yCx" id="Dnl-RX-w1u"/>
+                <outlet property="lblActiveTitle" destination="yra-c3-SCK" id="QOs-ZR-ckF"/>
             </connections>
             <point key="canvasLocation" x="112.97709923664122" y="61.619718309859159"/>
         </tableViewCell>

@@ -23,11 +23,15 @@ class ActiveUserCell: UICollectionViewCell {
 
     
     //  MARK:  Configure Active User Cell
-    func configureActiveUserCell(profile: String, username: String) {
-        self.profileImage.image = UIImage(named: profile)
-        self.profileImage.contentMode = .scaleAspectFill
-        self.profileImage.setBorder(radius: self.profileImage.frame.size.height / 2, color: .appColor, width: 2.5)
+    func configureActiveUserCell(activeuser: UserResponse) {
         
-        self.lblUserName.configureLabelAndAlignment(text: username.capitalized, color: .lightGray, fontStyle: .semibold, fontSize: FontSize.title13.generateFontSize(), align: .center)
+        if let profile = activeuser.profileImageURL, let activeUserProfile = URL(string: profile) {
+            profileImage.sd_setImage(with: activeUserProfile)
+        }
+        
+        profileImage.contentMode = .scaleToFill
+        profileImage.setBorder(radius: self.profileImage.frame.size.height / 2, color: .appColor, width: 1.5)
+        
+        lblUserName.configureLabelAndAlignment(text: activeuser.fullName ?? "", color: .lightGray, fontStyle: .semibold, fontSize: FontSize.title13.generateFontSize(), align: .center)
     }
 }

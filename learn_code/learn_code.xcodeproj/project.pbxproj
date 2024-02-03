@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		9D0CFF282B2E1F7800D07AA8 /* VerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0CFF272B2E1F7800D07AA8 /* VerificationViewController.swift */; };
+		9D1215AC2B6CD44A00159DD6 /* PersistenceStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1215AB2B6CD44A00159DD6 /* PersistenceStorage.swift */; };
+		9D1215B02B6CF71A00159DD6 /* Users.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9D1215AD2B6CF71A00159DD6 /* Users.xcdatamodeld */; };
+		9D1215B32B6D0E6800159DD6 /* Users+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1215B12B6D0E6800159DD6 /* Users+CoreDataClass.swift */; };
+		9D1215B42B6D0E6800159DD6 /* Users+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1215B22B6D0E6800159DD6 /* Users+CoreDataProperties.swift */; };
 		9D15821C2B55588500A7813B /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D15821B2B55588500A7813B /* NotificationService.swift */; };
 		9D1582252B5561AA00A7813B /* NotificationService.appex in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9D1582192B55588500A7813B /* NotificationService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9D25C6542B317B1E00D51D07 /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D25C6532B317B1E00D51D07 /* ChatListViewController.swift */; };
@@ -112,6 +116,11 @@
 		8374E5B89920CB26544ABE53 /* Pods-learn_code-learn_codeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-learn_code-learn_codeUITests.debug.xcconfig"; path = "Target Support Files/Pods-learn_code-learn_codeUITests/Pods-learn_code-learn_codeUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		9D0ADC5E2B60D87A00103E59 /* learn_code.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = learn_code.entitlements; sourceTree = "<group>"; };
 		9D0CFF272B2E1F7800D07AA8 /* VerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationViewController.swift; sourceTree = "<group>"; };
+		9D1215AB2B6CD44A00159DD6 /* PersistenceStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceStorage.swift; sourceTree = "<group>"; };
+		9D1215AE2B6CF71A00159DD6 /* Users.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Users.xcdatamodel; sourceTree = "<group>"; };
+		9D1215AF2B6CF71A00159DD6 /* User.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = User.xcdatamodel; sourceTree = "<group>"; };
+		9D1215B12B6D0E6800159DD6 /* Users+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Users+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		9D1215B22B6D0E6800159DD6 /* Users+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Users+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		9D1582192B55588500A7813B /* NotificationService.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationService.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D15821B2B55588500A7813B /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		9D15821D2B55588500A7813B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -238,6 +247,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		9D0A5B752B6BA102008606C2 /* API Manager */ = {
+			isa = PBXGroup;
+			children = (
+				9D3502DB2B3592CE007D1D6D /* DatabaseManager.swift */,
+			);
+			path = "API Manager";
+			sourceTree = "<group>";
+		};
 		9D15821A2B55588500A7813B /* NotificationService */ = {
 			isa = PBXGroup;
 			children = (
@@ -254,14 +271,6 @@
 				9DA3853E2B67CC0400602B62 /* MessageModel */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		9D3502DA2B3592B4007D1D6D /* DatabaseManager */ = {
-			isa = PBXGroup;
-			children = (
-				9D3502DB2B3592CE007D1D6D /* DatabaseManager.swift */,
-			);
-			path = DatabaseManager;
 			sourceTree = "<group>";
 		};
 		9D54285C2B3DF7F800DEDCE4 /* UserModel */ = {
@@ -338,13 +347,15 @@
 				9D605A672B17B96800214D2B /* View */,
 				9D3502D92B359291007D1D6D /* Model */,
 				9D853ED12B18FB220053153E /* Helper */,
-				9DDCB3462B1B9B1C00AEAC49 /* AppConfiguration */,
 				9D605A3E2B17B8C800214D2B /* Assets.xcassets */,
 				9DD821A42B5FEE1500B816BF /* AudioTune */,
 				9D605A402B17B8C800214D2B /* LaunchScreen.storyboard */,
 				9DCFFBC92B46CD7A00250472 /* GoogleService-Info.plist */,
 				9D605A432B17B8C800214D2B /* Info.plist */,
 				9D5A30CE2B302B450035B108 /* Storyboard */,
+				9DDCB3462B1B9B1C00AEAC49 /* AppConfiguration */,
+				9D0A5B752B6BA102008606C2 /* API Manager */,
+				9DC113F32B6CC19A001C812F /* CoreData */,
 			);
 			path = learn_code;
 			sourceTree = "<group>";
@@ -408,7 +419,6 @@
 				9D605A6A2B17BA2D00214D2B /* Constant */,
 				9D853ED22B18FB450053153E /* fonts */,
 				9D605A6B2B17BA3900214D2B /* Extension */,
-				9D3502DA2B3592B4007D1D6D /* DatabaseManager */,
 				9D853EEB2B1907660053153E /* Validations.swift */,
 				9DDCB3422B1B72AE00AEAC49 /* Color.swift */,
 				9D3502D72B35743B007D1D6D /* Helper.swift */,
@@ -452,6 +462,17 @@
 				9DA3853C2B67CBFC00602B62 /* LastMessageModel.swift */,
 			);
 			path = MessageModel;
+			sourceTree = "<group>";
+		};
+		9DC113F32B6CC19A001C812F /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				9D1215B12B6D0E6800159DD6 /* Users+CoreDataClass.swift */,
+				9D1215B22B6D0E6800159DD6 /* Users+CoreDataProperties.swift */,
+				9D1215AD2B6CF71A00159DD6 /* Users.xcdatamodeld */,
+				9D1215AB2B6CD44A00159DD6 /* PersistenceStorage.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		9DD6F2652B3AB78300C92710 /* ChatView */ = {
@@ -813,15 +834,19 @@
 				9D605A6F2B17C2EC00214D2B /* CommonExtension.swift in Sources */,
 				9D0CFF282B2E1F7800D07AA8 /* VerificationViewController.swift in Sources */,
 				9DDCB3432B1B72AE00AEAC49 /* Color.swift in Sources */,
+				9D1215B42B6D0E6800159DD6 /* Users+CoreDataProperties.swift in Sources */,
 				9D3502DC2B3592CE007D1D6D /* DatabaseManager.swift in Sources */,
+				9D1215B32B6D0E6800159DD6 /* Users+CoreDataClass.swift in Sources */,
 				9DDCB3452B1B962600AEAC49 /* IntroViewController.swift in Sources */,
 				9D5A30DA2B3054FD0035B108 /* Handler.swift in Sources */,
 				9D9262C62B3BE6360053A018 /* SenderUserCell.swift in Sources */,
 				9D605A362B17B8C600214D2B /* AppDelegate.swift in Sources */,
+				9D1215AC2B6CD44A00159DD6 /* PersistenceStorage.swift in Sources */,
 				9DDCB3482B1B9B4300AEAC49 /* LoginViewController.swift in Sources */,
 				9DD6F2642B3AB72000C92710 /* ConversationViewController.swift in Sources */,
 				9D605A382B17B8C600214D2B /* SceneDelegate.swift in Sources */,
 				9D5A30D82B3033010035B108 /* PostViewController.swift in Sources */,
+				9D1215B02B6CF71A00159DD6 /* Users.xcdatamodeld in Sources */,
 				9D3502D82B35743B007D1D6D /* Helper.swift in Sources */,
 				9D5A30CD2B30290F0035B108 /* MainTabController.swift in Sources */,
 				9D303E8E2B31589900BB75A6 /* NotificationViewController.swift in Sources */,
@@ -1243,6 +1268,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		9D1215AD2B6CF71A00159DD6 /* Users.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				9D1215AE2B6CF71A00159DD6 /* Users.xcdatamodel */,
+				9D1215AF2B6CF71A00159DD6 /* User.xcdatamodel */,
+			);
+			currentVersion = 9D1215AE2B6CF71A00159DD6 /* Users.xcdatamodel */;
+			path = Users.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 9D605A2A2B17B8C600214D2B /* Project object */;
 }

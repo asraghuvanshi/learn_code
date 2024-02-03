@@ -33,7 +33,6 @@ class ChatUserListCell: UITableViewCell {
             profileImage.sd_setImage(with: imageUrl)
         }
         
-        self.profileImage.image = UIImage(named: "image")
         self.profileImage.contentMode = .scaleAspectFill
         self.profileImage.setBorder(radius: self.profileImage.frame.size.height / 2, color: .appColor, width: 1.5)
         
@@ -41,7 +40,7 @@ class ChatUserListCell: UITableViewCell {
         self.lblUsername.configureLabel(text: userData.fullName ?? "", color: .blackColor, fontStyle: .bold, fontSize: FontSize.title16.generateFontSize())
     }
     
-    func displayLastConversations(message: LastMessageModel) {
+    func displayLastConversations(message: MessageModel) {
         self.lblActiveTiming.configureLabel(text: convertTimestampToTime(timestamp: message.timestamp ?? 0.0), color: .appColor, fontStyle: .semibold, fontSize: FontSize.title12.generateFontSize())
         
         self.lblLastMessage.configureLabel(text: message.content ?? "", color: .lightGray, fontStyle: .regular, fontSize: FontSize.title12.generateFontSize())

@@ -16,6 +16,12 @@ class DatabaseManager {
     static let shared = DatabaseManager()
     let reference = Database.database().reference()
     
+    static var currentUserId: String {
+        guard let userID = FirebaseAuth.Auth.auth().currentUser?.uid else { return ""
+        }
+        return userID
+    }
+    
     // MARK: - Create new User Method
     func addUser(userName: String, userEmail: String, mobileNo: String, password: String, profileImg: UIImage, completion: @escaping (Error?) -> Void) {
         FirebaseAuth.Auth.auth().createUser(withEmail: userEmail, password: password) { authResult, error in
@@ -206,14 +212,14 @@ class MessageManager {
                 if let conversations = snapshot.value as? [String: Any] {
                     for (conversationId, conversationData) in conversations {
                         if let messagesData = (conversationData as? [String: Any])?["messages"] as? [String: Any] {
-                            for (_, messageData) in messagesData {
+                            for (messageID, messageData) in messagesData {
                                 if let message = messageData as? [String: Any] {
                                     let content = message["content"] as? String ?? ""
                                     let receiverId = message["receiverId"] as? String ?? ""
                                     let senderId = message["senderId"] as? String ?? ""
                                     let timestamp = message["timestamp"] as? TimeInterval ?? 0.0
                                     
-                                    let messageData = MessageModel(senderId: senderId, receiverId: receiverId, content: content, timestamp: timestamp)
+                                    let messageData = MessageModel(messageID: messageID, senderId: senderId, receiverId: receiverId, content: content, timestamp: timestamp)
                                     if conversationId.contains(conversationPath) {
                                         messages.append(messageData)
                                         
@@ -252,7 +258,7 @@ class MessageManager {
                 if let conversations = snapshot.value as? [String: Any] {
                     for (conversationId, conversationData) in conversations {
                         if let messagesData = (conversationData as? [String: Any])?["messages"] as? [String: Any] {
-                            for (_, messageData) in messagesData {
+                            for (messageID, messageData) in messagesData {
                                 if let message = messageData as? [String: Any] {
                                     let content = message["content"] as? String ?? ""
                                     let receiverId = message["receiverId"] as? String ?? ""
@@ -262,7 +268,7 @@ class MessageManager {
                                     let receiverTyping = message["isSenderTyping"] as? Bool ?? false
                                     
                                     
-                                    let messageData = MessageModel(senderId: senderId, receiverId: receiverId, content: content, timestamp: timestamp)
+                                    let messageData = MessageModel(messageID: messageID, senderId: senderId, receiverId: receiverId, content: content, timestamp: timestamp)
                                     if conversationId.contains(conversationPath) {
                                         messages.append(messageData)
                                     }
@@ -279,55 +285,70 @@ class MessageManager {
     }
     
     //  MARK:  Fetch Last Conversations
-    func fetchLastConversation(completion: @escaping (LastMessageModel) -> Void) {
-        var messages: [LastMessageModel] = []
+    
+    func fetchLastMessages(completion: @escaping ([SenderMessages]) -> Void) {
+        var senderMessages: [SenderMessages] = []
         
         if let currentUserId = Auth.auth().currentUser?.uid {
-            
             // Use observeSingleEvent instead of observe
-            databaseRef.observe(.value, with: { snapshot in
+            databaseRef.observeSingleEvent(of: .value, with: { snapshot in
                 guard snapshot.exists() else {
-                    messages.removeAll()
-                    completion(LastMessageModel(id: "", senderId: "", receiverId: "", content: "", timestamp: 0.0))
+                    completion(senderMessages)
                     return
                 }
                 
                 if let conversations = snapshot.value as? [String: Any] {
                     for (conversationId, conversationData) in conversations {
                         if let messagesData = (conversationData as? [String: Any])?["messages"] as? [String: Any] {
-                            for (_, messageData) in messagesData {
+                            var messages: [MessageModel] = []
+                            
+                            for (messageID, messageData) in messagesData {
                                 if let message = messageData as? [String: Any] {
                                     let content = message["content"] as? String ?? ""
                                     let receiverId = message["receiverId"] as? String ?? ""
                                     let senderId = message["senderId"] as? String ?? ""
                                     let timestamp = message["timestamp"] as? TimeInterval ?? 0.0
-                                    let senderTyping = message["isSenderTyping"] as? Bool ?? false
-                                    let receiverTyping = message["isSenderTyping"] as? Bool ?? false
                                     
-                                    let messageData = LastMessageModel(id: conversationId, senderId: senderId, receiverId: receiverId, content: content, timestamp: timestamp)
-                                    messages.append(messageData)
-                                    
+                                    let messageModel = MessageModel(messageID: messageID, senderId: senderId, receiverId: receiverId, content: content, timestamp: timestamp)
+                                    messages.append(messageModel)
                                 }
                             }
+                            let sortedMessages = messages.sorted{ $0.timestamp ?? 0.0 < $1.timestamp ?? 0.0 }
+                            
+                            let senderReceiverId = conversationId
+                            
+                            if let index = senderMessages.firstIndex(where: { $0.senderReceiverId == senderReceiverId }) {
+                                senderMessages[index].messages.append(contentsOf: sortedMessages)
+                            } else {
+                                let senderMessage = SenderMessages(senderReceiverId: senderReceiverId, messages: sortedMessages)
+                                senderMessages.append(senderMessage)
+                            }
                         }
-                        messages.sort { $0.timestamp ?? 0.0 < $1.timestamp ?? 0.0 }
-                        completion(messages.last!)
-                        
                     }
+                    completion(senderMessages)
                 }
             })
         }
     }
     
     
-    func typingGestureRecognize() {
-        let databaseRef = Database.database().reference()
-        
+    func deleteUserConversations(conversationId: String,messageID: Array<String>, senderId: String, receiverId: String, completion: @escaping(String) -> Void) {
+        for message in messageID {
+            let removeConversationRef = databaseRef.child(conversationId).child("messages").child(message)
+            removeConversationRef.removeValue(completionBlock: { (error,_) in
+                if let error = error {
+                    print("Error while deleting messages")
+                } else {
+                    print("Conversations deleted")
+                }
+            })
+        }
     }
 }
 
 //  MARK:  Structure For Message Sending
 struct MessageModel {
+    let messageID: String
     let senderId: String
     let receiverId: String
     let content: String

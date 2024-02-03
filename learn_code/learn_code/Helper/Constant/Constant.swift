@@ -66,7 +66,6 @@ public struct FontSize{
 
 
 public enum UIName {
-    
     static let welcomeText = "Welcome"
     static let login = "Login"
     static let signup = "Signup"
@@ -78,7 +77,7 @@ public enum UIName {
     static let createAccount = "Create an account ?"
     static let otpVerification = "OTP Verification"
     static let otpSentMessage = "OTP has been sent to you register mobile number and email"
-    
+    static let activeUser = "Active User"
 }
 
 public enum UINavigationTile {

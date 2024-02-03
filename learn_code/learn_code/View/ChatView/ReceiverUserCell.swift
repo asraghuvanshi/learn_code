@@ -16,6 +16,8 @@ class ReceiverUserCell: UITableViewCell {
     
     @IBOutlet weak var messageView: UIView!
     
+    var receiverProfileImage = URL(string: "")
+    
     let formatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "hh:mm a"
@@ -25,6 +27,7 @@ class ReceiverUserCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        setReceiverCellLayout()
         
     }
 
@@ -33,14 +36,19 @@ class ReceiverUserCell: UITableViewCell {
 
     }
     
+    //  MARK:  Set Receiver Cell Layout
+    func setReceiverCellLayout() {
+       
+//        if let imgUrl = URL(string:receiverProfileImage) {
+            imgReceiverProfile.sd_setImage(with: receiverProfileImage)
+//        }
+        
+        imgReceiverProfile.contentMode = .scaleAspectFill
+        imgReceiverProfile.setBorder(radius: self.imgReceiverProfile.frame.size.height / 2, color: .appColor , width: 1.5)
+    }
     
     //   MARK:  Configure Receiver Cell
     func configureReceiverCell(message: MessageModel) {
-
-        self.imgReceiverProfile.image = UIImage(named: "image2")
-        self.imgReceiverProfile.contentMode = .scaleAspectFill
-        self.imgReceiverProfile.setBorder(radius: self.imgReceiverProfile.frame.size.height / 2, color: .appColor , width: 1.5)
-
         self.lblTextMessage.configureLabelAndAlignment(text: message.content, color: .blackColor, fontStyle: .semibold, fontSize: FontSize.title16.generateFontSize())
 
         self.lblTimeStamp.configureLabel(text: convertTimestampToTime(timestamp: message.timestamp), color: .appColor, fontStyle: .semibold, fontSize: FontSize.title12.generateFontSize())

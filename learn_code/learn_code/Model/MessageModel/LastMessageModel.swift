@@ -7,11 +7,7 @@
 
 import Foundation
 
-
-struct LastMessageModel {
-    var id: String?
-    var senderId: String?
-    var receiverId: String?
-    var content: String
-    var timestamp: TimeInterval?
+struct SenderMessages {
+    let senderReceiverId: String
+    var messages: [MessageModel]
 }

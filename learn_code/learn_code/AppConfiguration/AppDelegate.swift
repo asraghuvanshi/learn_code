@@ -12,6 +12,7 @@ import UserNotifications
 import FirebaseMessaging
 import Messages
 import IQKeyboardManager
+import CoreData
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {

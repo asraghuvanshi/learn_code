@@ -9,13 +9,27 @@ import UIKit
 
 class ChatHistoryCell: UITableViewCell {
 
+    @IBOutlet weak var lblActiveTitle: UILabel! {
+        didSet {
+            lblActiveTitle.configureLabelAndAlignment(text: UIName.activeUser, color: .appColor, fontStyle: .bold, fontSize: FontSize.boldTitle20.generateFontSize(), align: .left)
+        }
+    }
+    
     @IBOutlet weak var activeUserCollectionView: UICollectionView!
-    var profileData = ["image1","image2","image3","image4","image5","image6"]
-    var userName = ["Christlle Jolly", "Michelle", "Christal", "Shailly", "Mercy", "Rubina Fleam"]
 
+    var activeUserData = [(userId: String, userResponse: UserResponse)]() {
+        didSet {
+            DispatchQueue.main.async {
+                self.activeUserCollectionView.reloadData()
+            }
+           
+        }
+    }
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        configureChatCell()
+        configureCellLayout()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -23,34 +37,34 @@ class ChatHistoryCell: UITableViewCell {
 
     }
     
-    
-    func configureChatCell() {
-        registerActiceUserCollectionCell()
+ 
+    //  MARK:  Configure Cell Layout
+    func configureCellLayout(){
+        /// register  tableview cell
+        registerActiveUserCollectionCell()
     }
     
-    func registerActiceUserCollectionCell() {
-        DispatchQueue.main.async { [weak self] in
-            self?.activeUserCollectionView.register(UINib(nibName: ActiveUserCell.className, bundle: nil), forCellWithReuseIdentifier:ActiveUserCell.className)
-            self?.activeUserCollectionView.delegate = self
-            self?.activeUserCollectionView.dataSource = self
-        }
+    
+    //  MARK:  Register TableView Cell
+    func registerActiveUserCollectionCell() {
+        self.activeUserCollectionView.register(UINib(nibName: ActiveUserCell.className, bundle: nil), forCellWithReuseIdentifier:ActiveUserCell.className)
+        
+        self.activeUserCollectionView.delegate = self
+        self.activeUserCollectionView.dataSource = self
     }
     
 }
 
 
-extension ChatHistoryCell : UICollectionViewDelegate {
-    
-}
-
-extension ChatHistoryCell : UICollectionViewDataSource {
+extension ChatHistoryCell : UICollectionViewDelegate ,UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.profileData.count
+        return self.activeUserData.count
     }
+    
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let activeUserCell = collectionView.dequeueReusableCell(withReuseIdentifier: ActiveUserCell.className, for: indexPath) as! ActiveUserCell
-        activeUserCell.configureActiveUserCell(profile: self.profileData[indexPath.item], username: self.userName[indexPath.item])
+        activeUserCell.configureActiveUserCell(activeuser: self.activeUserData[indexPath.item].userResponse)
         return activeUserCell
     }
 }
@@ -58,8 +72,8 @@ extension ChatHistoryCell : UICollectionViewDataSource {
 
 extension ChatHistoryCell : UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cellWidth = activeUserCollectionView.frame.size.width / 3.5
-        let cellHeight = 140.0
+        let cellWidth = 180.0
+        let cellHeight = 180.0
         return CGSize(width: cellWidth, height: cellHeight)
     }
 }

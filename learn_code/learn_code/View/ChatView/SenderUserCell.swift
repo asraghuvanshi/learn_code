@@ -6,8 +6,8 @@
 //
 
 import UIKit
+import FirebaseAuth
 import FirebaseDatabase
-import FirebaseStorage
 
 class SenderUserCell: UITableViewCell {
 
@@ -15,9 +15,7 @@ class SenderUserCell: UITableViewCell {
     @IBOutlet weak var imgSenderProfile: UIImageView!
     @IBOutlet weak var lblTextMessage: UILabel!
     @IBOutlet weak var lblTimeStamp: UILabel!
-    
-    
-    
+    @IBOutlet weak var imgSelection: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,8 +31,11 @@ class SenderUserCell: UITableViewCell {
     
     //  MARK:  Configure Sender Cell
     func configureSenderCell(message: MessageModel) {
-        let storageRef = Storage.storage().reference()
-        let imageRef = storageRef.child("profile_images")
+        
+        self.imgSelection.contentMode = .scaleAspectFill
+        if let profileUrl = FirebaseAuth.Auth.auth().currentUser?.photoURL {
+            imgSenderProfile.sd_setImage(with: profileUrl)
+        }
     
         self.imgSenderProfile.contentMode = .scaleAspectFill
         self.imgSenderProfile.setBorder(radius: self.imgSenderProfile.frame.size.height / 2, color: .appColor , width: 1.5)
@@ -45,7 +46,5 @@ class SenderUserCell: UITableViewCell {
         
         self.messageView.backgroundColor = .lightPurpleColor
         self.messageView.setBorder(radius: 15, color: .appColor , width: 0.5)
-
     }
-    
 }
