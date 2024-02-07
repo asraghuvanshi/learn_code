@@ -14,9 +14,9 @@ target 'learn_code' do
   pod 'FirebaseStorage'
   pod 'FirebaseCrashlytics'
   pod 'FirebaseMessaging'
-
-  pod 'RealmSwift'
   pod 'SDWebImage'
+  pod 'ReachabilitySwift'
+
 
   
   

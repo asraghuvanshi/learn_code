@@ -29,7 +29,7 @@ class ActiveUserCell: UICollectionViewCell {
             profileImage.sd_setImage(with: activeUserProfile)
         }
         
-        profileImage.contentMode = .scaleToFill
+        profileImage.contentMode = .scaleAspectFill
         profileImage.setBorder(radius: self.profileImage.frame.size.height / 2, color: .appColor, width: 1.5)
         
         lblUserName.configureLabelAndAlignment(text: activeuser.fullName ?? "", color: .lightGray, fontStyle: .semibold, fontSize: FontSize.title13.generateFontSize(), align: .center)

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -76,20 +76,29 @@
                                     <constraint firstItem="rMW-9l-giA" firstAttribute="leading" secondItem="QrI-L2-Te2" secondAttribute="leading" constant="20" id="ykN-hO-HZ1"/>
                                 </constraints>
                             </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="SEl-IB-W9G">
+                                <rect key="frame" x="0.0" y="102.33333333333331" width="393" height="666.66666666666674"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ljB-yK-Xqc"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="ljB-yK-Xqc" firstAttribute="bottom" secondItem="SEl-IB-W9G" secondAttribute="bottom" id="2W4-rD-EgL"/>
                             <constraint firstAttribute="trailing" secondItem="QrI-L2-Te2" secondAttribute="trailing" id="9YR-LC-r4V"/>
                             <constraint firstItem="QrI-L2-Te2" firstAttribute="leading" secondItem="ljB-yK-Xqc" secondAttribute="leading" id="Ref-ss-qS3"/>
                             <constraint firstItem="QrI-L2-Te2" firstAttribute="top" secondItem="v0L-US-zWV" secondAttribute="top" id="hPS-t7-6fR"/>
+                            <constraint firstItem="SEl-IB-W9G" firstAttribute="top" secondItem="QrI-L2-Te2" secondAttribute="bottom" id="m3s-fy-Zas"/>
+                            <constraint firstItem="SEl-IB-W9G" firstAttribute="leading" secondItem="ljB-yK-Xqc" secondAttribute="leading" id="w2f-Nu-2Dw"/>
+                            <constraint firstItem="ljB-yK-Xqc" firstAttribute="trailing" secondItem="SEl-IB-W9G" secondAttribute="trailing" id="x0X-gL-Ngl"/>
                             <constraint firstItem="QrI-L2-Te2" firstAttribute="height" secondItem="v0L-US-zWV" secondAttribute="height" multiplier="0.12" id="zA8-BI-ekK"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="" id="tXa-Op-Xcb"/>
                     <navigationItem key="navigationItem" id="5NZ-5R-Ey5"/>
                     <connections>
+                        <outlet property="homeTableView" destination="SEl-IB-W9G" id="Jgj-Vg-vbu"/>
                         <outlet property="imgBack" destination="rMW-9l-giA" id="DOE-RW-iuO"/>
                         <outlet property="imgChat" destination="PMT-s8-9LI" id="sME-jp-rJI"/>
                     </connections>

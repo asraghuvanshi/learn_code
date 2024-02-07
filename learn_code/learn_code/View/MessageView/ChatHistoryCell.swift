@@ -9,15 +9,15 @@ import UIKit
 
 class ChatHistoryCell: UITableViewCell {
 
+    @IBOutlet weak var activeUserCollectionView: UICollectionView!
     @IBOutlet weak var lblActiveTitle: UILabel! {
         didSet {
             lblActiveTitle.configureLabelAndAlignment(text: UIName.activeUser, color: .appColor, fontStyle: .bold, fontSize: FontSize.boldTitle20.generateFontSize(), align: .left)
         }
     }
     
-    @IBOutlet weak var activeUserCollectionView: UICollectionView!
 
-    var activeUserData = [(userId: String, userResponse: UserResponse)]() {
+    var activeUserData = [UserResponse]() {
         didSet {
             DispatchQueue.main.async {
                 self.activeUserCollectionView.reloadData()
@@ -64,7 +64,7 @@ extension ChatHistoryCell : UICollectionViewDelegate ,UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let activeUserCell = collectionView.dequeueReusableCell(withReuseIdentifier: ActiveUserCell.className, for: indexPath) as! ActiveUserCell
-        activeUserCell.configureActiveUserCell(activeuser: self.activeUserData[indexPath.item].userResponse)
+        activeUserCell.configureActiveUserCell(activeuser: self.activeUserData[indexPath.item])
         return activeUserCell
     }
 }
@@ -72,8 +72,8 @@ extension ChatHistoryCell : UICollectionViewDelegate ,UICollectionViewDataSource
 
 extension ChatHistoryCell : UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cellWidth = 180.0
-        let cellHeight = 180.0
+        let cellWidth = 110.0
+        let cellHeight = 160.0
         return CGSize(width: cellWidth, height: cellHeight)
     }
 }

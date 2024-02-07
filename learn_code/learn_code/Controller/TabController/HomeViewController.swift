@@ -10,30 +10,42 @@ import FirebaseCore
 import FirebaseAuth
 import NotificationCenter
 
-class HomeViewController : UIViewController {
+class HomeViewController : BaseViewController {
     
     
     @IBOutlet weak var imgBack: UIImageView!
     @IBOutlet weak var imgChat: UIImageView!
-    
+    @IBOutlet weak var homeTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUIView()
-        NotificationCenter.default.addObserver(self, selector: #selector(becomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
-
     }
     
     //  MARK:  OnClick Set Init View Layout
     func configureUIView() {
-        let loggedUserEmail = FirebaseAuth.Auth.auth().currentUser?.email as? String
-        UserDefaults.standard.set(loggedUserEmail, forKey: "userEmail")
-        self.navigationController?.isNavigationBarHidden = true
-//        imgBack.image = UIImage(named: ImageCollection.backImage)
-        imgChat.image = UIImage(named: ImageCollection.chatIcon)
+        DispatchQueue.main.async {
+            self.registerHomeTableCell()
+            let loggedUserEmail = FirebaseAuth.Auth.auth().currentUser?.email as? String
+            UserDefaults.standard.set(loggedUserEmail, forKey: "userEmail")
+                self.navigationController?.isNavigationBarHidden = true
+//                  imgBack.image = UIImage(named: ImageCollection.backImage)
+                self.imgChat.image = UIImage(named: ImageCollection.chatIcon)
+                
+        }
+
         DatabaseManager.shared.fetchUsers(completion: {data , error in
-            
+            self.homeTableView.reloadData()
+        
         })
+    }
+    
+    //  MARK: Register TableView Cell
+    func registerHomeTableCell() {
+        self.homeTableView.register(UINib(nibName: HomeCell.className, bundle: nil), forCellReuseIdentifier: HomeCell.className)
+        
+        self.homeTableView.delegate = self
+        self.homeTableView.dataSource = self
     }
     
     
@@ -42,21 +54,23 @@ class HomeViewController : UIViewController {
         let tabVC =  AppStoryboard.Main.instance.instantiateViewController(withIdentifier: ChatListViewController.className) as! ChatListViewController
         self.navigationController?.pushViewController(tabVC, animated: true)
     }
+}
+
+//  MARK:  UITableViewDelegate and DataSource Methods
+extension HomeViewController : UITableViewDelegate , UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
     
-    
-    func handleNotifData() {
-        let pref = UserDefaults.init(suiteName: "group.id.gits.notifserviceextension")
-        let notifData = pref?.object(forKey: "NOTIF_DATA") as? NSDictionary
-        let aps = notifData?["aps"] as? NSDictionary
-        let alert = aps?["alert"] as? NSDictionary
-        let body = alert?["body"] as? String
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = homeTableView.dequeueReusableCell(withIdentifier: HomeCell.className, for: indexPath) as! HomeCell
         
-        // Getting image from UNNotificationAttachment
-        guard let imageData = pref?.object(forKey: "NOTIF_IMAGE") else { return }
-        guard let data = imageData as? Data else { return }
+        cell.configureCellData()
+        return cell
     }
     
-    @objc func becomeActive() {
-        self.handleNotifData()
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
     }
+    
 }

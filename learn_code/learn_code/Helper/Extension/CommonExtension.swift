@@ -100,17 +100,6 @@ extension UIView{
         self.layer.borderColor = color.cgColor
         self.clipsToBounds = true
     }
-    
-    func setNavigationBackground() {
-        let gradient: CAGradientLayer = CAGradientLayer()
-
-        gradient.colors = [UIColor.darkGreen.cgColor, UIColor.deepSky.cgColor]
-        gradient.locations = [0.0 , 1.0]
-        gradient.startPoint = CGPoint(x: 0.0, y: 1.0)
-        gradient.endPoint = CGPoint(x: 1.0, y: 5.0)
-        gradient.frame = CGRect(x: 0.0, y: 0.0, width: self.frame.size.width, height: self.frame.size.height)
-        self.layer.insertSublayer(gradient, at: 0)
-    }
 }
 
 func convertTimestampToTime(timestamp: TimeInterval) -> String {

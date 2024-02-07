@@ -10,7 +10,7 @@ import FirebaseAuth
 import FirebaseCore
 import CoreData
 
-class ChatListViewController : UIViewController {
+class ChatListViewController : BaseViewController {
     
     //  MARK:  UIView IBOutlet Connections
     
@@ -22,8 +22,8 @@ class ChatListViewController : UIViewController {
     
     @IBOutlet weak var chatTableView: UITableView!
     
-    var userListData = [(userId: String, userResponse: UserResponse)]()
-    
+    var userListData:[UserResponse] = []
+    var manager: UserManager = UserManager()
     
     var lastMessages: [SenderMessages] = []
     var counter = 0
@@ -42,14 +42,6 @@ class ChatListViewController : UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        /// Fetch all user list for chat history
-       
-        DatabaseManager.shared.fetchUsers(completion: { userData , error in
-            DispatchQueue.main.async {[weak self] in
-                self?.userListData = userData
-                self?.fetchLastMessage()
-            }
-        })
     }
     
     //  MARK:  Configure Init Layout View
@@ -63,7 +55,7 @@ class ChatListViewController : UIViewController {
             self.imgChat.image = UIImage(named: ImageCollection.chatIcon)
             
         }
-        
+        self.fetchAllData()
     }
     
     
@@ -81,20 +73,56 @@ class ChatListViewController : UIViewController {
         
     }
     
-    //  MARK: Remove Keyboard Notification Oberserver 
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
+
     //   MARK:  Fetch User Last Message
-    func fetchLastMessage(){
+    func fetchLastMessage(data: [UserResponse]){
         MessageManager.shared.fetchLastMessages{ [weak self] (lastMessages) in
             self?.lastMessages = []
+            self?.userListData = data
             self?.lastMessages = lastMessages
-            self?.chatTableView.reloadData()
+            self?.appendUserData(data: self?.userListData ?? [])
+            DispatchQueue.main.async {
+                self?.chatTableView.reloadData()
+            }
         }
     }
     
+    // MARK:  Append Data in CoreData Model
+    func appendUserData(data: [UserResponse]) {
+        for data in data {
+            ///  Checking if user data is already exists
+            if PersistenceStorage.shared.userDataExistsInCoreData(data) {
+                print("already exits")
+            } else {
+                /// No user exist data in core data
+                self.manager.saveUserData(user: data)
+            }
+        }
+    }
+    
+    
+    //  MARK:  Checking Internet If data is not available then fetching data from core data model
+    func fetchAllData() {
+        if !isInternetReachable() {
+            userListData = []
+            self.manager.getAllUser().map{ data in
+                if data.userId != currentUser {
+                    userListData.append(UserResponse(userId: data.userId, fullName: data.fullName, userEmail: data.userEmail, userMobile: "", profileImageURL: "null"))
+                }
+            }
+            self.chatTableView.reloadData()
+        } else {
+            DatabaseManager.shared.fetchUsers(completion: { userData , error in
+                self.fetchLastMessage(data: userData)
+            })
+        }
+    }
+    
+    
+    //  MARK: Remove Keyboard Notification Oberserver
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
     
     //  MARK:  OnClick Back Button Action
     @IBAction func onClickBackAction(_ sender: Any) {
@@ -122,37 +150,35 @@ extension ChatListViewController : UITableViewDelegate & UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
-            let activeUserCell = tableView.dequeueReusableCell(withIdentifier: ChatHistoryCell.className, for: indexPath) as! ChatHistoryCell
-            activeUserCell.activeUserData = self.userListData
-            return activeUserCell
-        } else if indexPath.section == 1 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: ChatUserListCell.className, for: indexPath) as! ChatUserListCell
-            let user = self.userListData[indexPath.row].userResponse
-            cell.configureUserList(userData: user)
-            
-            let senderReceiverID = [currentUser, user.userId ?? ""].sorted().joined(separator: "_")
-            
-            if let senderMessages = lastMessages.first(where: { $0.senderReceiverId == senderReceiverID }) {
-                if let lastMessage = senderMessages.messages.last {
-                    print(lastMessage.receiverId , indexPath.row)
-                    cell.displayLastConversations(message: lastMessage)
+            if indexPath.section == 0 {
+                let activeUserCell = tableView.dequeueReusableCell(withIdentifier: ChatHistoryCell.className, for: indexPath) as! ChatHistoryCell
+                activeUserCell.activeUserData = self.userListData
+                return activeUserCell
+            } else if indexPath.section == 1 {
+                let cell = tableView.dequeueReusableCell(withIdentifier: ChatUserListCell.className, for: indexPath) as! ChatUserListCell
+                let user = self.userListData[indexPath.row]
+                cell.configureUserList(userData: user)
+                
+                let senderReceiverID = [currentUser, user.userId ?? ""].sorted().joined(separator: "_")
+                
+                if let senderMessages = lastMessages.first(where: { $0.senderReceiverId == senderReceiverID }) {
+                    if let lastMessage = senderMessages.messages.last {
+                        cell.displayLastConversations(message: lastMessage)
+                    }
+                } else {
+                    let temp = MessageModel(messageID: "", senderId: "", receiverId: "", content: "", timestamp: 0.0)
+                    cell.displayLastConversations(message: temp)
+                    
                 }
-            } else {
-                let temp = MessageModel(messageID: "", senderId: "", receiverId: "", content: "", timestamp: 0.0)
-                cell.displayLastConversations(message: temp)
-
+                
+                return cell
             }
-
-            return cell
-        }
-        
         return UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            return 190.0
+            return 200.0
         } else if indexPath.section == 1 {
             return UITableView.automaticDimension
         } else {
@@ -164,9 +190,10 @@ extension ChatListViewController : UITableViewDelegate & UITableViewDataSource {
         if indexPath.section == 1{
             let chatVC = AppStoryboard.Main.instance.instantiateViewController(withIdentifier: ConversationViewController.className) as! ConversationViewController
             chatVC.hidesBottomBarWhenPushed = true
-            chatVC.userData = self.userListData[indexPath.row].userResponse
-            chatVC.receiverId = self.userListData[indexPath.row].userId
+            chatVC.userData = self.userListData[indexPath.row]
+            chatVC.receiverId = self.userListData[indexPath.row].userId ?? ""
             self.navigationController?.pushViewController(chatVC, animated: true)
         }
     }
 }
+

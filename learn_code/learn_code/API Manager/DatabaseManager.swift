@@ -11,6 +11,17 @@ import FirebaseAuth
 import FirebaseDatabase
 import FirebaseStorage
 
+
+//  MARK:  Structure For Message Sending
+struct MessageModel {
+    let messageID: String
+    let senderId: String
+    let receiverId: String
+    let content: String
+    let timestamp: TimeInterval
+}
+
+
 class DatabaseManager {
     
     static let shared = DatabaseManager()
@@ -54,9 +65,9 @@ class DatabaseManager {
     }
     
     // MARK: - Fetch all users from database
-    func fetchUsers(completion: @escaping ([(userId: String, userResponse: UserResponse)], Error?) -> Void) {
+    func fetchUsers(completion: @escaping ([UserResponse], Error?) -> Void) {
         reference.child("users").observeSingleEvent(of: .value, with: { snapshot in
-            var users: [(userId: String, userResponse: UserResponse)] = []
+            var users: [UserResponse] = []
             
             for child in snapshot.children {
                 if let childSnapshot = child as? DataSnapshot,
@@ -67,10 +78,10 @@ class DatabaseManager {
                         var userResponse = try JSONDecoder().decode(UserResponse.self, from: userData)
                         if FirebaseAuth.Auth.auth().currentUser?.uid != userId {
                             userResponse.userId = userId
-                            let userTuple = (userId: userId, userResponse: userResponse)
+                            let userTuple = userResponse
                             users.append(userTuple)
                         }
-                        
+
                     } catch {
                         print("Error decoding user data: \(error)")
                         completion([], error)
@@ -346,12 +357,5 @@ class MessageManager {
     }
 }
 
-//  MARK:  Structure For Message Sending
-struct MessageModel {
-    let messageID: String
-    let senderId: String
-    let receiverId: String
-    let content: String
-    let timestamp: TimeInterval
-}
+
 

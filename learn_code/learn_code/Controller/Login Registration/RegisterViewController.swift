@@ -110,8 +110,7 @@ extension RegisterViewController {
             
             self.navigationController?.isNavigationBarHidden = true
             self.lblHeaderTitle.configureLabel(text: UIName.signup, color: .appColor, fontStyle: .extraBold, fontSize: FontSize.boldTitle30.generateFontSize())
-            
-            
+
             self.lblFullname.configureLabel(text: UIName.fullName, color: .blackColor, fontStyle: .semibold, fontSize: FontSize.title18.generateFontSize())
             self.nameTextField.placeholder = UIPlaceholder.enterFullname
             

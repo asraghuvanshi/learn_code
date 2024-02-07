@@ -98,6 +98,7 @@ public enum UIButtonTitle {
     static let signupText = "Sign Up"
     static let genderMale = "Male"
     static let genderFemale = "Female"
+    static let follow = " Follow"
     
 }
 
