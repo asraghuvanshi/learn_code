@@ -27,7 +27,7 @@ class ChatUserListCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    
+    //  MARK:  Configure User List Data
     func configureUserList(userData: UserResponse) {
         if let urlString = userData.profileImageURL, let imageUrl = URL(string: urlString) {
             profileImage.sd_setImage(with: imageUrl)
@@ -40,6 +40,8 @@ class ChatUserListCell: UITableViewCell {
         self.lblUsername.configureLabel(text: userData.fullName ?? "", color: .blackColor, fontStyle: .bold, fontSize: FontSize.title16.generateFontSize())
     }
     
+    
+    //  MARK:  Configure User Last Sent Or Received Messages
     func displayLastConversations(message: MessageModel) {
         self.lblActiveTiming.configureLabel(text: convertTimestampToTime(timestamp: message.timestamp ?? 0.0), color: .appColor, fontStyle: .semibold, fontSize: FontSize.title12.generateFontSize())
         

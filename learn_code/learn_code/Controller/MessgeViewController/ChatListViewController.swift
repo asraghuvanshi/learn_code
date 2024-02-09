@@ -49,7 +49,7 @@ class ChatListViewController : BaseViewController {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             self.registerChatTableCell()
-            self.lblTitle.configureLabel(text: UINavigationTile.chatHistory, color: .blackColor,fontStyle: .bold, fontSize: FontSize.navigationTitle18.generateFontSize())
+            self.lblTitle.configureLabelAndAlignment(text: UINavigationTitle.chatHistory, color: .blackColor,fontStyle: .bold, fontSize: FontSize.navigationTitle18.generateFontSize(), align: .center)
             
             self.imgBack.image = UIImage(named: ImageCollection.backImage)
             self.imgChat.image = UIImage(named: ImageCollection.chatIcon)
@@ -95,6 +95,8 @@ class ChatListViewController : BaseViewController {
                 print("already exits")
             } else {
                 /// No user exist data in core data
+               /// delete save user data
+//                self.manager.deleteAllUser()
                 self.manager.saveUserData(user: data)
             }
         }

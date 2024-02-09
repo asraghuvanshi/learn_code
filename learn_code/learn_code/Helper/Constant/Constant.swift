@@ -77,12 +77,14 @@ public enum UIName {
     static let createAccount = "Create an account ?"
     static let otpVerification = "OTP Verification"
     static let otpSentMessage = "OTP has been sent to you register mobile number and email"
-    static let activeUser = "Active User"
+    static let activeUser = "Active Users"
 }
 
-public enum UINavigationTile {
+public enum UINavigationTitle {
     static let chatHistory = "Chat History"
     static let chats = "Chats"
+    static let createPost = "Create Posts"
+    static let userFeeds = "User Feeds"
     
 }
 
@@ -99,6 +101,7 @@ public enum UIButtonTitle {
     static let genderMale = "Male"
     static let genderFemale = "Female"
     static let follow = " Follow"
+    static let post = "Post"
     
 }
 

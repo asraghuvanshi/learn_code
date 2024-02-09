@@ -36,10 +36,11 @@ class ProfileViewController : UIViewController {
     func updateCurrentUser() {
         guard let userId = FirebaseAuth.Auth.auth().currentUser?.uid else { return }
 
-        DatabaseManager.shared.fetchCurrentUser(userId: userId, completion: {username,error in
+        DatabaseManager.shared.fetchCurrentUser(userId: userId, completion: { userData,error in
             DispatchQueue.main.async { [weak self] in
-                self?.lblHeaderTitle.configureLabel(text: username, color: .appColor, fontStyle: .extraBold, fontSize: FontSize.navigationTitle18.generateFontSize())
+                self?.lblHeaderTitle.configureLabel(text: userData?.fullName ?? "", color: .appColor, fontStyle: .extraBold, fontSize: FontSize.navigationTitle18.generateFontSize())
             }
+            print(error, userData?.fullName)
         })
     }
     

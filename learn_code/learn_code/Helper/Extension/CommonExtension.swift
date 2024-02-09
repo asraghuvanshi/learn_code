@@ -114,4 +114,3 @@ func convertTimestampToTime(timestamp: TimeInterval) -> String {
     
     return formattedTime
 }
-

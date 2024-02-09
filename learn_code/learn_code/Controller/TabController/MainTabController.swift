@@ -33,7 +33,7 @@ class MainTabController : UITabBarController, UITabBarControllerDelegate {
         let vc2 = tabStoryboard.instantiateViewController(withIdentifier: HomeViewController.className) as! HomeViewController
         let nav2 = UINavigationController(rootViewController: vc2)
         
-        let vc3 = tabStoryboard.instantiateViewController(withIdentifier: PostViewController.className) as! PostViewController
+        let vc3 = tabStoryboard.instantiateViewController(withIdentifier: FeedViewController.className) as! FeedViewController
         let nav3 = UINavigationController(rootViewController: vc3)
         
         let vc4 = tabStoryboard.instantiateViewController(withIdentifier: HomeViewController.className) as! HomeViewController

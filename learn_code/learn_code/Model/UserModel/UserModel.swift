@@ -24,3 +24,20 @@ struct UserResponse: Codable {
         case userEmail, userMobile
     }
 }
+
+
+// MARK: - NqBnQXeVxAsZnezADgp
+struct MediaPostModel: Codable {
+    let userId: String?
+    let content, fullName: String?
+    let postImage: String?
+    let userEmail: String?
+    let userImage: String?
+}
+
+struct LoggedUserModel {
+    let userId: String?
+    let fullName: String?
+    let userEmail: String?
+    let profileImageUrl: String?
+}

@@ -49,7 +49,7 @@ class DatabaseManager {
             }
             
             // Upload profile image and update user data in database
-            self.uploadProfileImage(profileImg) { imageUrl, uploadError in
+            self.uploadImage(profileImg) { imageUrl, uploadError in
                 guard uploadError == nil else {
                     print("Error uploading profile image: \(uploadError?.localizedDescription ?? "Unknown error")")
                     completion(uploadError)
@@ -81,7 +81,7 @@ class DatabaseManager {
                             let userTuple = userResponse
                             users.append(userTuple)
                         }
-
+                        
                     } catch {
                         print("Error decoding user data: \(error)")
                         completion([], error)
@@ -97,7 +97,7 @@ class DatabaseManager {
     
     // MARK: - Helper functions
     //  MARK:  Upload Profile Image
-    private func uploadProfileImage(_ image: UIImage, completion: @escaping (String?, Error?) -> Void) {
+    func uploadImage(_ image: UIImage, completion: @escaping (String?, Error?) -> Void) {
         let storageRef = Storage.storage().reference()
         let imageRef = storageRef.child("profile_images").child(UUID().uuidString + ".jpg")
         
@@ -125,7 +125,7 @@ class DatabaseManager {
     }
     
     //  MARK:  Update User in Database
-    private func updateUserInDatabase(_ userId: String, userName: String, userEmail: String, mobileNo: String, imageUrl: String?, completion: @escaping (Error?) -> Void) {
+    func updateUserInDatabase(_ userId: String, userName: String, userEmail: String, mobileNo: String, imageUrl: String?, completion: @escaping (Error?) -> Void) {
         let userReference = reference.child("users").child(userId)
         var values: [String: Any] = [
             "fullName": userName,
@@ -150,19 +150,66 @@ class DatabaseManager {
     }
     
     //  MARK:  Fetch Current User
-    func fetchCurrentUser(userId: String, completion: @escaping (String, Error?) -> Void) {
+    func fetchCurrentUser(userId: String, completion: @escaping (LoggedUserModel?, Error?) -> Void) {
         let userReference = reference.child("users").child(userId)
         
         userReference.observeSingleEvent(of: .value) { snapshot, error  in
             guard snapshot.exists() else {
+                completion(nil, nil)
                 return
             }
             if let dictionary = snapshot.value as? [String : AnyObject]  {
                 let username = dictionary["fullName"] as? String
-                completion(username ?? "", nil)
+                let useremail = dictionary["userEmail"] as? String
+                let profileImageUrl = dictionary["profileImageUrl"] as? String
+                
+                let currentUserModel = LoggedUserModel(userId: userId, fullName: username, userEmail: useremail, profileImageUrl: profileImageUrl)
+                completion(currentUserModel, nil)
             }
         }
     }
+    
+    func fetchUserPosts(completion: @escaping ([MediaPostModel], Error?) -> Void) {
+        reference.child("posts").observeSingleEvent(of: .value, with: { snapshot in
+            var posts: [MediaPostModel] = []
+            
+            for userSnapshot in snapshot.children {
+                guard let userPostsSnapshot = userSnapshot as? DataSnapshot else {
+                    continue
+                }
+                
+                for postSnapshot in userPostsSnapshot.children {
+                    guard let postDataSnapshot = postSnapshot as? DataSnapshot,
+                          let postData = postDataSnapshot.value as? [String: Any] else {
+                        continue
+                    }
+                    
+                    if let userId = postData["userId"] as? String,
+                       let content = postData["content"] as? String,
+                       let fullName = postData["fullName"] as? String,
+                       let postImageURL = postData["postImage"] as? String,
+                       let userEmail = postData["userEmail"] as? String,
+                       let userProfile = postData["profileImageUrl"] as? String {
+                        
+                        let mediaPost = MediaPostModel(userId: userId,
+                                                       content: content,
+                                                       fullName: fullName,
+                                                       postImage: postImageURL,
+                                                       userEmail: userEmail,
+                                                       userImage: userProfile)
+                        posts.append(mediaPost)
+                    }
+                }
+            }
+            
+            completion(posts, nil)
+        }) { error in
+            print("Error fetching user posts: \(error.localizedDescription)")
+            completion([], error)
+        }
+    }
+    
+    
 }
 
 
@@ -355,6 +402,55 @@ class MessageManager {
             })
         }
     }
+    
+    //  MARK: Upload User Post
+    
+    func uploadPost(userId: String, userName: String, userEmail: String,profile: String, imageUrl: UIImage?, content: String, completion: @escaping (Error?) -> Void) {
+        let storageRef = Storage.storage().reference()
+        let imageRef = storageRef.child("profile_images").child(UUID().uuidString + ".jpg")
+        
+        var values: [String: Any] = [
+            "userId": userId,
+            "fullName": userName,
+            "profileImageUrl": profile,
+            "userEmail": userEmail,
+            "content": content
+        ]
+        
+        if let uploadData = imageUrl?.jpegData(compressionQuality: 0.5) {
+            imageRef.putData(uploadData, metadata: nil) { metadata, error in
+                if let error = error {
+                    print("Error uploading image: \(error.localizedDescription)")
+                    completion(error)
+                    return
+                }
+                
+                imageRef.downloadURL { url, urlError in
+                    guard let imageUrl = url?.absoluteString else {
+                        print("Error getting image download URL: \(urlError?.localizedDescription ?? "Unknown error")")
+                        completion(urlError)
+                        return
+                    }
+                    
+                    values["postImage"] = imageUrl
+                    
+                    let userPostReference = Database.database().reference().child("posts").child(userId).childByAutoId()
+                    
+                    // Save the post under the user's node
+                    userPostReference.setValue(values) { error, _ in
+                        completion(error)
+                    }
+                }
+            }
+        } else {
+            let userPostReference = Database.database().reference().child("posts").child(userId).childByAutoId()
+            
+            userPostReference.setValue(values) { error, _ in
+                completion(error)
+            }
+        }
+    }
+    
 }
 
 

@@ -136,6 +136,8 @@ class ConversationViewController : UIViewController {
         }
     }
     
+    
+    //  MARK:   Fetch All Conversations from Firebase
     func getAllConversations() {
         ///  Get all Conversations
         MessageManager.shared.getAllConversations(receiverId: self.receiverId ,completion: { conversations in
@@ -161,7 +163,7 @@ class ConversationViewController : UIViewController {
         })
     }
     
-    
+    //   MARK:   Adjust Keyboard height
     @objc func keyboardWillShow(_ notification: Notification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             messageTypingView.frame.origin.y = keyboardSize.height
@@ -169,6 +171,8 @@ class ConversationViewController : UIViewController {
         }
     }
     
+    
+    //  MARK:  Fix KeyBoard Height
     @objc func keyboardWillHide(_ notification: Notification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             messageTypingView.frame.origin.y += keyboardSize.height
@@ -177,6 +181,7 @@ class ConversationViewController : UIViewController {
     }
     
     
+    //  MARK:    Message Long Pressed Gesture Recognize
     @objc func messageTapRecognizer(_ gesture: UILongPressGestureRecognizer) {
         if gesture.state == .began {
             self.deleteBtn.isHidden = false
@@ -205,6 +210,7 @@ class ConversationViewController : UIViewController {
         self.handleSendMessage()
     }
     
+    //  MARK:   Delete Conversations Button Action
     @IBAction func deleteConversationsAction(_ sender: Any) {
         guard let receiverId = userData?.userId else {
             return
@@ -212,7 +218,7 @@ class ConversationViewController : UIViewController {
         
         let currentUserId = DatabaseManager.currentUserId
         let conversationID = [currentUserId, receiverId ].sorted().joined(separator: "_")
-        
+        ///    Delete User   conversations from firebase
         MessageManager.shared.deleteUserConversations(conversationId: conversationID,messageID: self.deletedMessageIds, senderId: currentUserId, receiverId: receiverId, completion: { str in
             
             DispatchQueue.main.async {

@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import SDWebImage
+
 
 class HomeCell: UITableViewCell {
 
@@ -15,12 +17,10 @@ class HomeCell: UITableViewCell {
     @IBOutlet weak var lblDescription: UILabel!
     @IBOutlet weak var imgPost: UIImageView!
     @IBOutlet weak var bttnFollow: UIButton!
-
     
     override func awakeFromNib() {
         super.awakeFromNib()
         configureCellView()
-        configureCellData()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -37,9 +37,16 @@ class HomeCell: UITableViewCell {
 
     
     //  MARK:  Configure Cell Data
-    func configureCellData() {
-        lblUsername.configureLabelAndAlignment(text: "Krishna Sharma", color: .blackColor, fontStyle: .semibold, fontSize: FontSize.title18.generateFontSize())
+    func configureMediaCell(mediaModel: MediaPostModel) {
+        lblUsername.configureLabelAndAlignment(text: mediaModel.fullName ?? "", color: .blackColor, fontStyle: .semibold, fontSize: FontSize.title18.generateFontSize())
         
-        lblDescription.configureLabelAndAlignment(text: "Software Engineer at 360-Bytes Mohali", color: .blackColor, fontStyle: .bold, fontSize: FontSize.title14.generateFontSize(),align: .natural)
+        lblDescription.configureLabelAndAlignment(text: mediaModel.content ?? "", color: .blackColor, fontStyle: .regular, fontSize: FontSize.title14.generateFontSize(),align: .natural)
+        
+        if let userImageUrl = mediaModel.userImage, let url = URL(string: userImageUrl) {
+            imgUserProfile.sd_setImage(with: url)
+        }
+        if let postUrl = mediaModel.postImage , let url = URL(string: postUrl) {
+            imgPost.sd_setImage(with: url)
+        }
     }
 }

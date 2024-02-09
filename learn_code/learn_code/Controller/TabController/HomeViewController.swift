@@ -12,10 +12,11 @@ import NotificationCenter
 
 class HomeViewController : BaseViewController {
     
-    
     @IBOutlet weak var imgBack: UIImageView!
     @IBOutlet weak var imgChat: UIImageView!
     @IBOutlet weak var homeTableView: UITableView!
+    
+    var mediaModelData: [MediaPostModel]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,10 +35,7 @@ class HomeViewController : BaseViewController {
                 
         }
 
-        DatabaseManager.shared.fetchUsers(completion: {data , error in
-            self.homeTableView.reloadData()
-        
-        })
+        fetchMediaPost()
     }
     
     //  MARK: Register TableView Cell
@@ -46,6 +44,14 @@ class HomeViewController : BaseViewController {
         
         self.homeTableView.delegate = self
         self.homeTableView.dataSource = self
+    }
+    
+    // MARK:  Fetch User Post
+    func fetchMediaPost() {
+        DatabaseManager.shared.fetchUserPosts(completion: { data, error  in
+            self.mediaModelData = data
+            self.homeTableView.reloadData()
+        })
     }
     
     
@@ -59,13 +65,14 @@ class HomeViewController : BaseViewController {
 //  MARK:  UITableViewDelegate and DataSource Methods
 extension HomeViewController : UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return mediaModelData?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = homeTableView.dequeueReusableCell(withIdentifier: HomeCell.className, for: indexPath) as! HomeCell
-        
-        cell.configureCellData()
+        if let mediaData = self.mediaModelData {
+            cell.configureMediaCell(mediaModel: mediaData[indexPath.row])
+        }
         return cell
     }
     
