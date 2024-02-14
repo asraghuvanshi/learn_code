@@ -1,1 +1,9 @@
 
+name: hello-world
+on: push
+jobs:
+  my-job:
+    runs-on: macOS-latest
+    steps:
+      - name: my-step
+        run: echo "Github Action Test"
