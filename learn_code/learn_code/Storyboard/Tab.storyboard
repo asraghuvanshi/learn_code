@@ -240,16 +240,39 @@
                                     <action selector="onClickLogoutAction:" destination="pH9-sl-SAW" eventType="touchUpInside" id="kiJ-IO-8eS"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j2K-CG-0xe">
+                                <rect key="frame" x="133.66666666666666" y="408.66666666666669" width="125.99999999999997" height="35"/>
+                                <color key="tintColor" red="0.43529411759999997" green="0.0" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Chat Support"/>
+                                <connections>
+                                    <action selector="onClickChatSupportAction:" destination="pH9-sl-SAW" eventType="touchUpInside" id="oDY-lG-ddV"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ExN-H3-Rrw">
+                                <rect key="frame" x="96.666666666666686" y="483.66666666666669" width="200" height="45.000000000000057"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="JS4-2F-HSS"/>
+                                    <constraint firstAttribute="width" constant="200" id="vmS-N4-CPD"/>
+                                </constraints>
+                                <color key="tintColor" red="0.43529411759999997" green="0.0" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Authenticate Face"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="5js-s7-Pni"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="jg5-BB-MIM" firstAttribute="leading" secondItem="5js-s7-Pni" secondAttribute="leading" constant="50" id="51e-1j-YIs"/>
+                            <constraint firstItem="ExN-H3-Rrw" firstAttribute="centerX" secondItem="5js-s7-Pni" secondAttribute="centerX" id="5Wk-50-TYK"/>
                             <constraint firstItem="XtS-ag-Jmv" firstAttribute="leading" secondItem="5js-s7-Pni" secondAttribute="leading" id="B3L-Y5-PtN"/>
                             <constraint firstItem="XtS-ag-Jmv" firstAttribute="top" secondItem="b7F-l6-gOh" secondAttribute="top" id="Lyw-fi-hYm"/>
+                            <constraint firstItem="j2K-CG-0xe" firstAttribute="centerY" secondItem="b7F-l6-gOh" secondAttribute="centerY" id="NAj-XP-suw"/>
                             <constraint firstItem="XtS-ag-Jmv" firstAttribute="height" secondItem="b7F-l6-gOh" secondAttribute="height" multiplier="0.12" id="Zbj-kN-6uT"/>
+                            <constraint firstItem="j2K-CG-0xe" firstAttribute="centerX" secondItem="b7F-l6-gOh" secondAttribute="centerX" id="ciy-0D-a7s"/>
                             <constraint firstItem="5js-s7-Pni" firstAttribute="trailing" secondItem="jg5-BB-MIM" secondAttribute="trailing" constant="50" id="hLh-tE-1Cd"/>
+                            <constraint firstItem="ExN-H3-Rrw" firstAttribute="top" secondItem="j2K-CG-0xe" secondAttribute="bottom" constant="40" id="lIV-e8-b4y"/>
                             <constraint firstItem="5js-s7-Pni" firstAttribute="trailing" secondItem="XtS-ag-Jmv" secondAttribute="trailing" id="vIn-zB-1Eg"/>
                             <constraint firstItem="jg5-BB-MIM" firstAttribute="top" secondItem="XtS-ag-Jmv" secondAttribute="bottom" constant="50" id="xxc-10-NdR"/>
                         </constraints>
@@ -266,6 +289,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xA0-n9-hpZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3704.5801526717555" y="-1422.5352112676057"/>
+        </scene>
+        <!--Face Authentication View Controller-->
+        <scene sceneID="MR1-IW-feA">
+            <objects>
+                <viewController storyboardIdentifier="FaceAuthenticationViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="pPh-Ph-r34" customClass="FaceAuthenticationViewController" customModule="learn_code" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Bh0-cE-daR">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="bjW-XC-GSQ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SYg-t6-Ajf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3705" y="-571"/>
         </scene>
         <!--Leaderboard View Controller-->
         <scene sceneID="SZH-Bh-QXK">

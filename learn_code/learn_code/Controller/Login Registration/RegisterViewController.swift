@@ -13,7 +13,6 @@ class RegisterViewController : UIViewController {
     
     
     @IBOutlet weak var profileView: UIView!
-    
     @IBOutlet weak var imgProfileIcon: UIImageView!
     
     @IBOutlet weak var lblHeaderTitle: UILabel!

@@ -30,6 +30,7 @@ public enum FontStyle: String {
 enum AppStoryboard : String {
     case Main           = "Main"
     case Tab            = "Tab"
+    case Qticket        = "Qticket"
     
     var instance : UIStoryboard {
         return UIStoryboard(name: self.rawValue, bundle: Bundle.main)
@@ -78,6 +79,9 @@ public enum UIName {
     static let otpVerification = "OTP Verification"
     static let otpSentMessage = "OTP has been sent to you register mobile number and email"
     static let activeUser = "Active Users"
+    
+    static let chatSupportText = "Welcome to Qticket Chat Support"
+    static let help = "What are you looking for ?"
 }
 
 public enum UINavigationTitle {
@@ -102,6 +106,8 @@ public enum UIButtonTitle {
     static let genderFemale = "Female"
     static let follow = " Follow"
     static let post = "Post"
+    static let chatWithAgent = "Chat With Us"
+    static let callUs =  "Call Us"
     
 }
 

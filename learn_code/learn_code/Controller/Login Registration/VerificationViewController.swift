@@ -32,6 +32,8 @@ class VerificationViewController : UIViewController {
         super.viewWillAppear(animated)
     }
     
+    
+    //  MARK:  OnClick Login Button Action
     @IBAction func onClickLoginAction(_ sender: Any) {
         let dashBoardVC = AppStoryboard.Tab.instance.instantiateViewController(withIdentifier: MainTabController.className) as! MainTabController
         self.navigationController?.pushViewController(dashBoardVC, animated: true)
@@ -40,6 +42,8 @@ class VerificationViewController : UIViewController {
     
 }
 
+
+//  MARK:  Setup Init UILayout
 extension VerificationViewController {
     func setInitUI() {
         lblHeaderTitle.configureLabel(text: UIName.otpVerification, color: .appColor, fontStyle: .semibold, fontSize: FontSize.boldTitle24.generateFontSize())

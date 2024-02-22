@@ -16,6 +16,8 @@ class ProfileViewController : UIViewController {
     @IBOutlet weak var imgBack: UIImageView!
     @IBOutlet weak var imgChat: UIImageView!
     
+    // MARK: Private and Global Variable Declarations
+    
     
     // MARK:  UIView Lifecycle Methods
     override func viewDidLoad() {
@@ -23,6 +25,8 @@ class ProfileViewController : UIViewController {
         configureView()
     }
     
+    
+    //  MARK:  Setup Init View Layout
     func configureView() {
         DispatchQueue.main.async {
             [weak self] in
@@ -33,6 +37,7 @@ class ProfileViewController : UIViewController {
     }
     
     
+    //   MARK:  Fetch current User From Firebase Database
     func updateCurrentUser() {
         guard let userId = FirebaseAuth.Auth.auth().currentUser?.uid else { return }
 
@@ -44,6 +49,8 @@ class ProfileViewController : UIViewController {
         })
     }
     
+    
+    //  MARK:  OnClicK Chat Button Action
     @IBAction func onClickChatAction(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
         
@@ -57,5 +64,22 @@ class ProfileViewController : UIViewController {
         self.navigationController?.pushViewController(rootVC, animated: true)
     }
     
+    
+    //  MARK:  OnClick Chat Support Action
+    @IBAction func onClickChatSupportAction(_ sender: Any) {
+        
+        let chatvc = AppStoryboard.Qticket.instance.instantiateViewController(withIdentifier: SupportViewController.className) as! SupportViewController
+        self.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(chatvc, animated: true)
+    }
+    
+    
+    //  MARK:  OnClick Face Authentication Action
+    @IBAction func onClickFaceAuthentication(_ sender: Any) {
+        
+        let authVC = AppStoryboard.Tab.instance.instantiateViewController(withIdentifier: FaceAuthenticationViewController.className) as! FaceAuthenticationViewController
+        self.navigationController?.pushViewController(authVC, animated: true)
+        
+    }
 }
 

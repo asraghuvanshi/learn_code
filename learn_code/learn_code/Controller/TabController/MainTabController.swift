@@ -27,6 +27,8 @@ class MainTabController : UITabBarController, UITabBarControllerDelegate {
         self.delegate = self
         let tabStoryboard = UIStoryboard(name: AppStoryboard.Tab.rawValue, bundle: nil)
         
+        let chatStoryboard = UIStoryboard(name: AppStoryboard.Qticket.rawValue, bundle: nil)
+        
         let vc1 = tabStoryboard.instantiateViewController(withIdentifier: HomeViewController.className) as! HomeViewController
         let nav1 = UINavigationController(rootViewController: vc1)
         
@@ -46,7 +48,7 @@ class MainTabController : UITabBarController, UITabBarControllerDelegate {
         nav2.title = "Feeds"
         nav3.title = "Post"
         nav4.title = "Feeds"
-        nav5.title = "Profile"
+        nav5.title = "Chat Support"
         
         nav1.tabBarItem.image = UIImage(named: ImageCollection.homeTab)?.withRenderingMode(.alwaysOriginal)
         nav2.tabBarItem.image = UIImage(named: ImageCollection.homeTab)?.withRenderingMode(.alwaysOriginal)

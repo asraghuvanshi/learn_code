@@ -46,4 +46,5 @@ extension UIColor {
     static let charcoalColor = UIColor(hexString: "#36454F")
     static let slateGrayColor = UIColor(hexString: "#657383")
     static let platinumColor = UIColor(hexString: "#E5E4E2")
+    static let creamColor = UIColor(hexString: "#fffdd0")
 }

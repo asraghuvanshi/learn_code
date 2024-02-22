@@ -91,19 +91,6 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             print("Attachment Identifier: \(attachmentIdentifier)")
          }
       }
-      
-      if let fcmOptions = userInfo["fcm_options"] as? [String: Any],
-         let imageURLString = fcmOptions["image"] as? String,
-         let imageURL = URL(string: imageURLString),
-         let aps = userInfo["aps"] as? [String: Any],
-         let alert = aps["alert"] as? [String: Any],
-         let title = alert["title"] as? String {
-         
-         print("Image URL: \(imageURL)")
-         print("Title: \(title)")
-      } else {
-         print("Image URL or Title not found in dictionary")
-      }
       completionHandler()
    }
    

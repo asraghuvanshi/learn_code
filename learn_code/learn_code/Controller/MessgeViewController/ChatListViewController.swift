@@ -16,10 +16,8 @@ class ChatListViewController : BaseViewController {
     
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var lblTitle: UILabel!
-    
     @IBOutlet weak var imgBack: UIImageView!
     @IBOutlet weak var imgChat: UIImageView!
-    
     @IBOutlet weak var chatTableView: UITableView!
     
     var userListData:[UserResponse] = []

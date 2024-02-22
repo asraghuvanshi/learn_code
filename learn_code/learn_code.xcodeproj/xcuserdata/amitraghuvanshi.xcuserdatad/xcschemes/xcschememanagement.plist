@@ -19,6 +19,11 @@
 			<key>orderHint</key>
 			<integer>36</integer>
 		</dict>
+		<key>NotificationContentExtension.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>42</integer>
+		</dict>
 		<key>NotificationService 1.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -29,7 +34,7 @@
 		<key>NotificationService.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>30</integer>
+			<integer>2</integer>
 		</dict>
 		<key>NotificationServiceExtension.xcscheme_^#shared#^_</key>
 		<dict>
@@ -46,12 +51,12 @@
 		<key>PushNotification.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>36</integer>
+			<integer>3</integer>
 		</dict>
 		<key>learn_code.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>41</integer>
+			<integer>4</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
