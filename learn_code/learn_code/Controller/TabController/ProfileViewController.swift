@@ -73,13 +73,5 @@ class ProfileViewController : UIViewController {
         self.navigationController?.pushViewController(chatvc, animated: true)
     }
     
-    
-    //  MARK:  OnClick Face Authentication Action
-    @IBAction func onClickFaceAuthentication(_ sender: Any) {
-        
-        let authVC = AppStoryboard.Tab.instance.instantiateViewController(withIdentifier: FaceAuthenticationViewController.className) as! FaceAuthenticationViewController
-        self.navigationController?.pushViewController(authVC, animated: true)
-        
-    }
 }
 

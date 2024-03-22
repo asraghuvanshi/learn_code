@@ -16,7 +16,7 @@
             <string>OpenSans-Semibold.ttf</string>
             <string>OpenSans-SemiboldItalic.ttf</string>
         </array>
-
+        
         <!-- Scene Manifest Configuration -->
         <key>UIApplicationSceneManifest</key>
         <dict>
@@ -39,7 +39,7 @@
                 </array>
             </dict>
         </dict>
-
+        
         <!-- Background Modes Configuration -->
         <key>UIBackgroundModes</key>
         <array>
@@ -47,7 +47,7 @@
             <string>processing</string>
             <string>remote-notification</string>
         </array>
-
+        
         <!-- Arbitrary Load Configuration -->
         <key>NSAppTransportSecurity</key>
         <dict>

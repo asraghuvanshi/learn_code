@@ -2,7 +2,7 @@
 //  SceneDelegate.swift
 //  learn_code
 //
-//  Created by Amit Raghuvanshi on 29/11/2023.
+//  Created by Amit Raghuvanshi on 13/11/2023.
 //
 
 import UIKit
@@ -19,12 +19,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let _ = (scene as? UIWindowScene) else { return }
         
         if let loggedUsername = UserDefaults.standard.object(forKey: "userEmail") {
-            let tabVC =  AppStoryboard.Tab.instance.instantiateViewController(withIdentifier: MainTabController.className) as! MainTabController
+//            let tabVC =  AppStoryboard.Tab.instance.instantiateViewController(withIdentifier: MainTabController.className) as! MainTabController
+            let tabVC = AppStoryboard.Main.instance.instantiateViewController(identifier: GreetingView.className) as! GreetingView
+
             UIApplication.shared.windows.first?.rootViewController = tabVC
             UIApplication.shared.windows.first?.makeKeyAndVisible()
         } else {
             
-            let loginNavController = AppStoryboard.Main.instance.instantiateViewController(identifier: LoginViewController.className) as! LoginViewController
+//            let loginNavController = AppStoryboard.Main.instance.instantiateViewController(identifier: LoginViewController.className) as! LoginViewController
+            let loginNavController = AppStoryboard.Main.instance.instantiateViewController(identifier: GreetingView.className) as! GreetingView
+
             window?.rootViewController = UINavigationController(rootViewController: loginNavController)
         }
     }
